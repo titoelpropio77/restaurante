@@ -1,33 +1,40 @@
 <?php
 Class Conexion {
       var $servername = "127.0.0.1";
-   var $username = "root";
-   var $password = "";
+   var $username = "tito";
+   var $password = "tito_root";
    var $dbname="posgourmet";
-   var $conn;
-   var $estado;
+   public $conn;
+   public $estado;
    
-   public function conectar(){
+   public function ConexionDB(){
+         try {
+           
+            $this->conn = new mysqli('localhost','tito','tito_root','posgourmet',3306);
+            if($this->conn->connect_errno){
+                $this->estado= false;
+                  
+                return $this->estado;
+            }else{
+                $this->estado= true;
+                return $this->estado;
+            }
+          
+        }
+        catch(PDOException $e)
+        {
+            $this->estado= false;
+                return $this->estado;
+        }
+   }
 
-        //    try {
-        //     $this->username=$cuenta;
-        //     $this->password=$contrasena;
-        //     $this->conn = new mysqli('localhost','root','','posgourmet',3306);
-        //     if($this->conn->connect_errno){
-        //         $this->estado= false;
-        //           header('Location: offline.html');
-        //     }else{
-        //         $this->estado= true;
-        //     }
-        //     return $conn;
-        // }
-        // catch(PDOException $e)
-        // {
-        //     $this->estado= false;
-        // }
-      $mysqli = new mysqli('localhost','root','','posgourmet',3306);
-      if ($mysqli->connect_errno)
-         header('Location: offline.html');
+   public function Conexion(){
+      
+      $mysqli = new mysqli('localhost','tito','tito_root','posgourmet',3306);
+      if ($mysqli->connect_errno){
+         
+         echo '<script> alert (" NO HAY CONEXION ");</script>';
+         }
       $mysqli->set_charset('utf8');
       return $mysqli;
    }

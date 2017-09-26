@@ -18,7 +18,7 @@
     <![endif]-->
     
   </head>
-  <body>
+  <body style="background-image: url(imagenes/bg2.jpg);">
   
     <p><br/></p>
     <div class="container">

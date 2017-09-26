@@ -6,37 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sistema PosGooN</title>
 	<!-- bootstrap -->
+    <link href="css/cargando.css" rel="stylesheet">
     
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/puglins/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/puglins/AdminLTE.css" rel="stylesheet">
+    <link href="css/puglins/alertify.css" rel="stylesheet">
   <!-- bootstrap js -->
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
-<body>
-	<nav class="navbar navbar-default navbar-static-top">
-		<div class="container">
+<body style="background-image: url(imagenes/bg2.jpg); box-shadow: 0 0 35px 8px black;">
+	
+	<div class="container">
+    <nav class="navbar navbar-inverse" >
+    <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+       <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+              </button>
+
+      <a class="navbar-brand" href="#">GOURMET</a>
       <!-- <a class="navbar-brand" href="#">Brand</a> -->
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
-      <ul class="nav navbar-nav navbar-right">        
-      	<li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>Cierre diario</a></li>                      
-        <li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>Reporte de Caja</a></li>                      
-        <li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>Reporte de Productos</a></li>                      
-        <li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>Reporte de Servicios</a></li>                      
-        <li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>Reporte de Clientes</a></li>                      
+    <div class="collapse navbar-collapse" id="myNavbar">      
+      <ul class="nav navbar-nav ">        
+        <li id="navDashboard"><a href="index.php"></i>Cierre diario</a></li>                      
+        <li id="navDashboard"><a href="index.php"></i>Reporte de Caja</a></li>                      
+        <li id="navDashboard"><a href="index.php"></i>Reporte de Productos</a></li>                      
+        <li id="navDashboard"><a href="index.php"></i>Reporte de Servicios</a></li>                      
+        <li id="navDashboard"><a href="index.php"></i>Reporte de Clientes</a></li>                      
         <li class="dropdown" id="navOrder">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-cog"></i> Mantenimiento <span class="caret"></span></a>
+          <a href="productos.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-cog"></i> Mantenimiento <span class="caret"></span></a>
           <ul class="dropdown-menu">            
             <li id="navCategories"><a href="categories.php"> <i class="glyphicon glyphicon-th-list"></i> Categorias</a></li>        
             <li id="navProduct"><a href="productos.php"> <i class="glyphicon glyphicon-cutlery"></i> Productos </a></li>               
@@ -58,6 +64,4 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-	</nav>
-	<div class="container">
-    
+  </nav>

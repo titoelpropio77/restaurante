@@ -1,16 +1,22 @@
 <?php
-require_once 'conexion.php';
+require_once 'Conexion.php';
 class Personal extends Conexion {
     public $mysqli;
     public $data;
     public function __construct() {
-        $this->mysqli = parent::conectar();
+        $this->mysqli = parent::Conexion();
         $this->data = array();
     }
     //*****************************************************************
     // LISTAMOS PRODUCTOS
     //*****************************************************************
     public function personal(){
+
+        // $con = new Conexion();
+        // if (!$con->estado) {
+        //    echo '<script> alert (" NO HAY CONEXION ");</script>';
+    
+        // }
         $resultado = $this->mysqli->query("SELECT
             productos_mysql.id,
             productos_mysql.cod_prod,
@@ -21,10 +27,11 @@ class Personal extends Conexion {
             productos_mysql.estado,
             productos_mysql.grupo,
             productos_mysql.presa,
+            productos_mysql.colores,            
             menugrupo_mysql.nom_grupo
             FROM
             productos_mysql
-            INNER JOIN menugrupo_mysql ON productos_mysql.grupo = menugrupo_mysql.grupo
+            INNER JOIN menugrupo_mysql ON productos_mysql.grupo = menugrupo_mysql.grupo order by id DESC
             ");
         while( $fila = $resultado->fetch_assoc() ){
             $data[] = $fila;
