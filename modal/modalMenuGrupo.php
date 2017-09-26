@@ -19,7 +19,7 @@
                            <label for="inputEmail3" class="col-sm-3 control-label">Estado: </label>
                   <div class="col-sm-9">
 
-                        <select class="form-control" id="estado" name="estado">
+                        <select class="form-control" id="estadoGrupo" name="estado">
                             <option value="0">-- seleccionar estado --</option>
                             <option value="ACTIVO">ACTIVO</option>
                             <option value="INACTIVO">INCTIVO</option>

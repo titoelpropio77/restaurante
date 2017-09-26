@@ -23,13 +23,15 @@ $con->transacion();
 	$menugrupo= new menugrupo($con);
 	$menugrupo->contructor(0,0,$nombre,$estado,$color,0,$orden);
 	$insertar= $menugrupo->insertar();
+	$menugrupo->contructor(0,$insertar,'','','',$insertar,0);
+	$modificar= $menugrupo->modificarCodigoGrupo($insertar);
 
 	if ($insertar===0) {
 		  $error = "No se pudo insertar al proveedor $nombre. Intente nuevamente.";
 		  $con->rollback();
 	}else{
 		$con->commit();
-		$resultado="INSERTADO CORRECTAMENTE";
+		$resultado=$menugrupo->todo();
 	}
 }
 $reponse = array("error" => $error, "result" => $resultado);

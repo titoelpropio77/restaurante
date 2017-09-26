@@ -1,6 +1,8 @@
 <?php
 require("class/personal.php");
 require("class/paises.php");
+require("class/menugrupo.php");
+
 include "header.php";
 ?>
 
@@ -41,7 +43,8 @@ if(isset($_POST['bts'])){
 
 <?php 
 include "modal/modalProducto.php";
-   ?>
+include "modal/modalMenuGrupo.php";
+   ?> 
 
 <p>
   <?php 
@@ -102,7 +105,7 @@ include "alerts/cargando.php";
                          <td><?php echo $row['nom_grupo'] ?></td>
                          <td><?php echo $row['estado'] ?></td>
                          <td><?php echo $row['presa'] ?></td>
-                         <td><button style="background:  <?php echo $row['colores']."; border-color:".$row['colores'] ; ?>"></button></td>
+                         <td><button style="background:  <?php echo $row['colores']."; border-color:".$row['colores'] ; ?> ;    width: 100%;  height: 26px;"></button></td>
                          <td>
                              <button onclick="cargarDatos(<?php echo $row['id'] ?>)" class="btn btn-info" title="EDITAR PRODUCTO" data-toggle="modal" data-target="#myModaledit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                               <!-- <button type="button" class="glyphicon glyphicon-pencil" aria-hidden="true"" data-toggle="modal" data-target="#myModaledit"></button>-->
@@ -124,6 +127,7 @@ include "alerts/cargando.php";
 </div>
     </div>
     <script src="js/producto.js"></script>
+    <script src="js/menuGrupo.js"></script>
  
 <?php
 include "footer.php";

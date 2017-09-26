@@ -1,8 +1,10 @@
 function guardarGrupo(){
 	nombre=$('#NombreGrupo').val();
-	estado=$('#estado').val();
+	estado=$('#estadoGrupo').val();
 	color=$('#colorGrupo').val();
 	orden=$('#orden').val();
+	selectGrupo=$('#selectGrupo');
+	selectGrupo.empty();
 	$('#loading').css('display','block');
 	url="CONTROLADORES/menuGrupoController.php";
 	$.ajax({
@@ -21,7 +23,11 @@ $('#loading').css('display','none');
             alert(json.error);
         }else{
         	  alertify.success('GUARDADO CORRECTAMENTE');
-        	location.reload();
+        	for (var i = 0; i < json.result.length; i++) {
+        		selectGrupo.append("<option value='"+json.result[i].grupo+"'' >"+json.result[i].nom_grupo);
+        	}
+        	$('#ModaAgregarGrupo').modal('hide');
+        	$('#ModaListarGrupo').modal('hide');
         }
 
 

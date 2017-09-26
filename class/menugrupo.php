@@ -19,6 +19,7 @@ class menugrupo
 	
 	function contructor($id, $cod_grupo,$nom_grupo,$estado,$colores,$grupo,$orden){
 		$this->id = $id;
+        $this->cod_grupo=$cod_grupo;
 		$this->nom_grupo=$nom_grupo;
 		$this->estado=$estado;
 		$this->colores=$colores;
@@ -36,6 +37,7 @@ class menugrupo
                 $menugrupo->cod_grupo = $row['COD_GRUPO'] == null ? "" : $row['COD_GRUPO'];
                 $menugrupo->nom_grupo = $row['NOM_GRUPO'] == null ? "" : $row['NOM_GRUPO'];
                 $menugrupo->estado = $row['ESTADO'] == null ? "" : $row['ESTADO'];
+                $menugrupo->grupo = $row['GRUPO'] == null ? "" : $row['GRUPO'];
              
 
                 // $provedor->Contacto = $row['Contacto'] == null ? "" : $row['Contacto'];
@@ -67,13 +69,17 @@ $consulta="insert into posgourmet.menugrupo_mysql(ID, NOM_GRUPO,  ESTADO, COLORE
 
 
 }
-   		 function modificar($id) {
+         function modificar($id) {
         $consulta = "update posgourmet.menugrupo_mysql set  nom_prod ='" . $this->nom_prod . "', cantidad ='" . $this->cantidad . "', pre_venta ='" . $this->pre_venta . "',  colores ='" . $this->colores . "', disponible ='" . $this->disponible . "', barcode ='" . $this->barcode . "', grupo =" . $this->grupo . ", familia ='" . $this->familia . "' where id=" . $id;
         return $this->CON->manipular($consulta);
     }
-   		 
+             function modificarCodigoGrupo($id) {
+        $consulta = "update posgourmet.menugrupo_mysql set  COD_GRUPO ='" . $this->cod_grupo . "', GRUPO =" . $this->grupo . " where id=" . $id;
+        return $this->CON->manipular($consulta);
+    }
+    	 
 		function todo(){
-		$consulta="select * from menugrupo_mysql";
+		$consulta="select * from menugrupo_mysql order by ID desc";
 		$result=$this->CON->consulta($consulta);
 		return $this->rellenar($result);
 	}		
