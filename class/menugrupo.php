@@ -51,7 +51,7 @@ class menugrupo
         }
     }
 	function ListarDadaId($id){
-			$consulta="select *from menugrupo_mysql where productos_mysql.id=$id";
+			$consulta="select *from menugrupo_mysql where id=$id";
 			   $result = $this->CON->consulta($consulta);
         $producto = $this->rellenar($result);
         if ($producto == null) {

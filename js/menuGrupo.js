@@ -1,3 +1,5 @@
+var opcion =0;
+
 function guardarGrupo(){
 	nombre=$('#NombreGrupo').val();
 	estado=$('#estadoGrupo').val();
@@ -33,4 +35,30 @@ $('#loading').css('display','none');
 
 		},
 	});
+}
+function cargarDatos(id){
+url="CONTROLADORES/menuGrupoController.php";
+$('#loading').css('display','block');
+$.ajax({
+		url:url,
+		type:'POST',
+		typedata:'json',
+		data:{proceso:"cargarDatos",id:id},
+		success:function(res){
+$('#loading').css('display','none');
+
+  var json = $.parseJSON(res);
+        if (json.error.length > 0) {
+            if ("Error Session" === json.error) {
+                padreSession.click();
+            }
+            alert(json.error);
+        }else{
+        	  
+        }
+
+
+		},
+	});
+
 }

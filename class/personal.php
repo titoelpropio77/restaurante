@@ -31,7 +31,7 @@ class Personal extends Conexion {
             menugrupo_mysql.nom_grupo
             FROM
             productos_mysql
-            INNER JOIN menugrupo_mysql ON productos_mysql.grupo = menugrupo_mysql.grupo order by id DESC
+            INNER JOIN menugrupo_mysql ON productos_mysql.grupo = menugrupo_mysql.grupo 
             ");
         while( $fila = $resultado->fetch_assoc() ){
             $data[] = $fila;

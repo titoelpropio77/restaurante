@@ -34,6 +34,14 @@ $con->transacion();
 		$resultado=$menugrupo->todo();
 	}
 }
+if ($proceso==="cargarDatos") {
+$id=$_POST['id'];
+$con->transacion();
+	$menugrupo= new menugrupo($con);
+	
+	$resultado= $menugrupo->ListarDadaId($id);
+
+}
 $reponse = array("error" => $error, "result" => $resultado);
 echo  json_encode($reponse);
  ?>

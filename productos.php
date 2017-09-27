@@ -55,9 +55,7 @@ include "alerts/cargando.php";
       <div class="panel-heading">
         <ul class="nav nav-tabs">
   <li class="active"><a href="#"><b>PRODUCTO</b></a></li>
-  <li><a href="menugrupo.php"><b>GRUPO</b></a></li>
-  <li><a href="#"><b>INVENTARIO Y PRODUCCION</b></a></li>
-  <li><a href="#"><b>CATEGORIA</b></a></li>
+  <li><a href="inventario.php"><b>INVENTARIO Y PRODUCCION</b></a></li>
 </ul>
 </div>
       <div class="panel-body">
@@ -65,7 +63,7 @@ include "alerts/cargando.php";
      <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">Agregar Categorias</button> -->
 </p>
 
-<table id="ghatable" class="table table-bordered table-striped dataTable no-footer" > <!--jquery.dataTables.min.js -->
+<table id="ghatable" class="ghatable table table-bordered table-striped dataTable no-footer" > <!--jquery.dataTables.min.js -->
      <thead style="text-align: center">
           
                <th>ID</th>
@@ -107,13 +105,13 @@ include "alerts/cargando.php";
                          <td><?php echo $row['presa'] ?></td>
                          <td><button style="background:  <?php echo $row['colores']."; border-color:".$row['colores'] ; ?> ;    width: 100%;  height: 26px;"></button></td>
                          <td>
-                             <button onclick="cargarDatos(<?php echo $row['id'] ?>)" class="btn btn-info" title="EDITAR PRODUCTO" data-toggle="modal" data-target="#myModaledit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                             <button onclick="cargarDatosProducto(<?php echo $row['id'] ?>)" class="btn btn-info" title="EDITAR PRODUCTO" data-toggle="modal" data-target="#myModaledit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                               <!-- <button type="button" class="glyphicon glyphicon-pencil" aria-hidden="true"" data-toggle="modal" data-target="#myModaledit"></button>-->
                          </td>
                          <td>
                               <!-- <a onclick="return confirm('Desea eliminar el registro')" href="delete.php?d=<?php //echo $row['id'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elimina</a> -->
-                               <button onclick="cargarDatos(<?php echo $row['id'] ?>)" class="btn btn-danger" title="ELIMINAR PRODUCTO" data-toggle="modal" data-target="#myModaledit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                              <!--<button type="button" class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm('Desea eliminar el registro')" onclick="return confirm('Desea eliminar el registro')" href="delete.php?d=<?php echo $row['id'] ?>" ></button>                              -->
+                               <button onclick="cargarDatosProducto(<?php echo $row['id'] ?>)" class="btn btn-danger" title="ELIMINAR PRODUCTO" data-toggle="modal" data-target="#myModaledit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                     
                          </td>
                         
                          

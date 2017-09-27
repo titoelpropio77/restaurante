@@ -41,17 +41,8 @@
         <li id="navDashboard"><a href="index.php"></i>Reporte de Productos</a></li>                      
         <li id="navDashboard"><a href="index.php"></i>Reporte de Servicios</a></li>                      
         <li id="navDashboard"><a href="index.php"></i>Reporte de Clientes</a></li>                      
-        <li class="dropdown" id="navOrder">
-          <a href="productos.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-cog"></i> Mantenimiento <span class="caret"></span></a>
-          <ul class="dropdown-menu">            
-            <li id="navCategories"><a href="categories.php"> <i class="glyphicon glyphicon-th-list"></i> Categorias</a></li>        
-            <li id="navProduct"><a href="productos.php"> <i class="glyphicon glyphicon-cutlery"></i> Productos </a></li>               
-            <li id="navCategories"><a href="categories.php"> <i class="glyphicon glyphicon-th-list"></i>Grupos</a></li>        
-            <li id="navCategories"><a href="categories.php"> <i class="glyphicon glyphicon-th-list"></i>Inventario y produccion</a></li>                    
-            <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i>Usuarios</a></li>               
-            <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i>Mesas</a></li>               
-          </ul>
-        </li> 
+        <li id="navDashboard"><a href="productos.php" > <i class="glyphicon glyphicon-cog"></i> Mantenimiento</span></a></li>                      
+    
         <li id="navBrand"><a href="brand.php"><i class="glyphicon glyphicon-btc"></i>Contabilidad</a></li>        
         <!-- <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li> -->
         <li class="dropdown" id="navSetting">

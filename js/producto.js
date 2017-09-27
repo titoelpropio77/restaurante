@@ -1,5 +1,5 @@
 
-function cargarDatos(id){
+function cargarDatosProducto(id){
 var url="CONTROLADORES/productoController.php";
 	idProducto=$('#idProductoA');
 
@@ -26,10 +26,13 @@ $.ajax({
  	if (json.error.length > 0) {
             if ("Error Session" === json.error) {
                 padreSession.click();
+                 alert("json.result['id']");
             }
-            $("body").msmOK(json.error);
+                 alert("json.result['id']");
+
         }else{
  }
+
  idProducto.val(json.result['id']);
  nombreProducto.val(json.result['nom_prod']);
  estado.val(json.result['estado']);

@@ -442,3 +442,23 @@ function cargando(estado){
         $("#cargando").remove();
     }
 }
+function cambiarFormulario(li){
+
+    elemento=$(li);
+
+    url=elemento.attr('url');
+
+    iframe=$('#iframe');
+  
+    if (elemento.attr('class')==="active") {
+
+    }else{
+        //elemento.addClass('active');
+          $('.active').removeClass();
+        elemento.parent().attr('class','active');
+
+
+         iframe.attr('src',url);
+    }
+    
+}
