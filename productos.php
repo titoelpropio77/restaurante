@@ -1,7 +1,13 @@
 <?php
+require("class/Conexion.php");
+
 require("class/personal.php");
 require("class/paises.php");
 require("class/menugrupo.php");
+require("class/PRODUCTOS_MYSQL.class.php");
+require("class/INSUMOS_MYSQL.class.php");
+require("class/RELPROINS_MYSQL.class.php");
+require("CONTROLADORES/insumoProductoController.php");
 
 include "header.php";
 ?>
@@ -34,6 +40,25 @@ if(isset($_POST['bts'])){
     <?php
   }
 }
+if(isset($_POST['btnGuardarInsumoProducto'])){
+  if(guardarInsumoProducto()){  
+    ?>
+    <p></p>
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <strong>Listo!</strong> Registro guardado con exito... <a href="productos.php">Listar productos</a>.
+    </div>
+    <?php
+  } else{
+    ?>
+    <p></p>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <strong>Error!</strong> Formulario vacio.
+    </div>
+    <?php
+  }
+}
 ?>
 
 <!--//*****************************************************************-->
@@ -44,6 +69,7 @@ if(isset($_POST['bts'])){
 <?php 
 include "modal/modalProducto.php";
 include "modal/modalMenuGrupo.php";
+include "modal/modalInsumoProducto.php";
    ?> 
 
 <p>
@@ -66,19 +92,17 @@ include "alerts/cargando.php";
 <table id="ghatable" class="ghatable table table-bordered table-striped dataTable no-footer" > <!--jquery.dataTables.min.js -->
      <thead style="text-align: center">
           
-               <th>ID</th>
                <th>Codigo</th>
                <th>Nombre</th>
                <th>Cantidad</th>
                <th>Unidad</th>
                <th>Precio</th>
-               <th>NroCate</th>
                <th>Categoria</th>
                <th>Estado</th>
-               <th>Sugiere</th>
                <th>Color</th>
-               <th>Editar</th>
-               <th>Eliminar</th>
+              
+               <th>Operacion</th>
+               <th>Insumos</th>
          
      </thead>
      <tbody>
@@ -93,28 +117,59 @@ include "alerts/cargando.php";
                foreach ($personal as $row){
                     ?>                    
                     <tr style="text-align: center">
-                         <td><?php echo $row['id'] ?></td>
                          <td><?php echo $row['cod_prod'] ?></td>
                          <td><?php echo $row['nom_prod'] ?></td>
                          <td><?php echo $row['cantidad'] ?></td>
                          <td><?php echo $row['unid'] ?></td>
                          <td><?php echo $row['pre_venta'] ?></td>
-                         <td><?php echo $row['grupo'] ?></td>                         
                          <td><?php echo $row['nom_grupo'] ?></td>
                          <td><?php echo $row['estado'] ?></td>
-                         <td><?php echo $row['presa'] ?></td>
                          <td><button style="background:  <?php echo $row['colores']."; border-color:".$row['colores'] ; ?> ;    width: 100%;  height: 26px;"></button></td>
                          <td>
                              <button onclick="cargarDatosProducto(<?php echo $row['id'] ?>)" class="btn btn-info" title="EDITAR PRODUCTO" data-toggle="modal" data-target="#myModaledit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                               <!-- <button type="button" class="glyphicon glyphicon-pencil" aria-hidden="true"" data-toggle="modal" data-target="#myModaledit"></button>-->
-                         </td>
-                         <td>
                               <!-- <a onclick="return confirm('Desea eliminar el registro')" href="delete.php?d=<?php //echo $row['id'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elimina</a> -->
                                <button onclick="cargarDatosProducto(<?php echo $row['id'] ?>)" class="btn btn-danger" title="ELIMINAR PRODUCTO" data-toggle="modal" data-target="#myModaledit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                                      
                          </td>
                         
-                         
+                         <td><?php 
+                             $con = new Conexion();
+                $lista=array();
+                $conexcion = $con->ConexionDB() ;
+                $productoinsumo=new RELPROINS_MYSQL($con);
+                  $lista=$productoinsumo->buscarXID($row['id']);
+                  if (count($lista)) {
+                        echo "<div class='box box-danger direct-chat direct-chat-warning collapsed-box' id='' ><button type='button' class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'></i></button>
+             <div class='box-body' style='display: none;'>
+             <table class=''>
+                <thead><th><CENTER>INSUMO</CENTER></th><th><CENTER>CANTIDAD</CENTER></th><th><CENTER>OPERACION</CENTER></th></button>
+                <form  id='formulario' enctype='multipart/form-data' method='POST'> 
+                 <input type='hidden' value=". $row['id'] ." name='idProducto' >
+                  <button class='btn btn-success' data-toggle='modal' name='btnInsumoProducto' data-target='#ModalaAgregarInsumo' onclick='colocarId(". $row['id'] .")'>AGREGAR INSUMO</button>
+                  </form>
+                 </thead>
+                <tbody id=''>";
+            
+              
+
+                for ($i=0; $i <count($lista) ; $i++) { 
+                  echo "<tr>
+                  <td>".$lista[$i]->NOM_INSUMO."</td>
+                  <td>".$lista[$i]->CANTIDAD."</td>
+                  <td><button class='btn btn-warning btn-xs'>EDITAR</button>
+                      <button class='btn btn-danger btn-xs'>Eliminar</button>
+                  </td>
+                  </tr>";
+                }
+                echo "</tbody>
+             </table> </div>  </div>"  ;
+                  }
+                       else{
+                        echo "<button class='btn btn-success ' data-toggle='modal' data-target='#ModalaAgregarInsumo' onclick='colocarId(". $row['id'] .")'>AGREGAR INSUMO</button>";
+                       }  
+
+                          ?></td>
                     </tr>
                     <?php
                }
@@ -122,6 +177,7 @@ include "alerts/cargando.php";
           ?>
      </tbody>
 </table>   
+
 </div>
     </div>
     <script src="js/producto.js"></script>
@@ -130,3 +186,4 @@ include "alerts/cargando.php";
 <?php
 include "footer.php";
 ?>
+    <script src="js/insumoProducto.js"></script>

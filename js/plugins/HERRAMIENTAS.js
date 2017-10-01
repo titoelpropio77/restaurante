@@ -274,7 +274,7 @@ var imagenCargando="../Imagen/cargando.gif";
 //     $.datepicker.setDefaults($.datepicker.regional["es"]);
 // });
 function validar(tipo,texto){
-    texto=texto.trim();
+        // texto=texto.trim();
     switch (tipo){
         case "texto":
             var expresion=/^[a-zA-Z\.\,\s-_º()=?¿/%$@!:;{}óíáéúñÍÁÉÚÓ]+$/;
@@ -461,4 +461,13 @@ function cambiarFormulario(li){
          iframe.attr('src',url);
     }
     
+}
+function limpia(elemento){
+    if (elemento.value==0)
+    elemento.value="";                    
+}
+
+function verificar(elemento){
+    if (elemento.value=="")
+    elemento.value="0";                    
 }

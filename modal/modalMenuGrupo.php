@@ -39,7 +39,7 @@
                         <div class="col-sm-9">
 
                             <select class="form-control" id="estadoA" name="estado">
-                                <option value="0">-- seleccionar estado --</option>
+                                <option value="ACTIVO">-- seleccionar estado --</option>
                                 <option value="ACTIVO">ACTIVO</option>
                                 <option value="INACTIVO">INCTIVO</option>
                             </select>

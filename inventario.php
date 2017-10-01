@@ -34,7 +34,8 @@ include "modal/modalMenuGrupo.php";
   <li  ><a href="#" url="formularios/insumos.php" id="frmInsumos" onclick="cambiarFormulario(this)"><b>INSUMOS </b></a></li>
   <li  ><a href="#" id="frmReporteDInsumos" onclick="cambiarFormulario(this)"><b>REPORTE DETALLADO </b></a></li>
   <li  ><a href="#" id="frmReporteDGeneral" onclick="cambiarFormulario(this)"><b>REPORTE GENERAL </b></a></li>
-  <li  ><a href="#" id="frmReceta" onclick="cambiarFormulario(this)"><b>RECETA </b></a></li>
+  <li  ><a href="#" url="formularios/receta.php" id="frmReceta" onclick="cambiarFormulario(this)"><b>RECETA </b></a></li>
+  <li class="pull-right" ><a href="#" class="btn btn-danger" ><b>VOLVER </b></a></li>
 </ul>
 </div>
       <div class="panel-body">

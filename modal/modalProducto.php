@@ -143,7 +143,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-sm-12">
-                  
+                 
                         <div class="form-group col-xs-9">
                             <label for="inputEmail3" class="col-sm-3 control-label">Nombre: </label>
                             <div class="col-sm-9">
@@ -222,9 +222,7 @@
                         <div class="form-group col-xs-9">
                             <label for="inputEmail3" class="col-sm-3 control-label">Color:</label>
                             <div class="col-sm-9">  
-                                <input type='color' id='colores' name='colores' type='color' value='<?php if (isset($_POST['submit'])) {
-                                        echo $colores;
-                                    } ?>' />
+                                <input type='color' id='colores' name='colores' type='color' />
                             </div>                    
                         </div>                    
                         <div class="form-group col-xs-9">
@@ -324,10 +322,10 @@
                             </div>                    
                         </div>
                         <div class="form-group col-xs-12">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Orden: </label>
+                            <label for="inputEmail3" class="col-sm-3 control-label" >Orden: </label>
                             <div class="col-sm-9">
 
-                                <input type="number" class="form-control" id="orden" placeholder="ORDEN">
+                                <input type="number" class="form-control" id="orden" placeholder="ORDEN" value="0">
                             </div>
                         </div> <!-- form-goup -->
                     </div>

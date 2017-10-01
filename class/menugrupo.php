@@ -39,7 +39,7 @@ class menugrupo
                 $menugrupo->estado = $row['ESTADO'] == null ? "" : $row['ESTADO'];
                 $menugrupo->grupo = $row['GRUPO'] == null ? "" : $row['GRUPO'];
              
-
+                
                 // $provedor->Contacto = $row['Contacto'] == null ? "" : $row['Contacto'];
                 // $provedor->Telefono_Contacto = $row['Telefono_Contacto'] == null ? "" : $row['Telefono_Contacto'];
                 // $provedor->sucursal_id = $row['sucursal_id'] == null ? "" : $row['sucursal_id'];

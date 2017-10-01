@@ -19,7 +19,10 @@ $nombre=$_POST['nombre'];
 $estado=$_POST['estado'];
 $color=$_POST['color'];
 $orden=$_POST['orden'];
-$con->transacion();
+if ($orden=="") {
+	$orden=NULL;
+}
+	$con->transacion();
 	$menugrupo= new menugrupo($con);
 	$menugrupo->contructor(0,0,$nombre,$estado,$color,0,$orden);
 	$insertar= $menugrupo->insertar();

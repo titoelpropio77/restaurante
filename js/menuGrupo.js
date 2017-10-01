@@ -5,6 +5,7 @@ function guardarGrupo(){
 	estado=$('#estadoGrupo').val();
 	color=$('#colorGrupo').val();
 	orden=$('#orden').val();
+	alert(orden);
 	selectGrupo=$('#selectGrupo');
 	selectGrupo.empty();
 	$('#loading').css('display','block');
