@@ -177,6 +177,16 @@ function buscarXID($id){
         $consulta = "update posgourmet.insumos_mysql set  COD_INS ='" . $id. "' where ID=" . $id;
         return $this->CON->manipular($consulta);
     }
+
+       function listar($id){//lista para el modal del formulario producto
+   	$consulta="select distinct * from insumos_mysql where (NOT EXISTS(SELECT *from relproins_mysql,productos_mysql where relproins_mysql.COD_PROD=productos_mysql.cod_prod and relproins_mysql.COD_INS=insumos_mysql.COD_INS and productos_mysql.cod_prod=".$id." )) ";
+   	 $result=$this->CON->consulta($consulta);
+        $insumos_mysql=$this->rellenar($result);
+  if($insumos_mysql==null){
+            return null;
+        }
+        return $insumos_mysql;
+   }
     
 
 }

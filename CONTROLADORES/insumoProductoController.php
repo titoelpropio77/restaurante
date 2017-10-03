@@ -39,13 +39,23 @@ if($error!=''){
 
 }
 
-if(isset($_POST['btnInsumoProducto'])){// esta funcion lista en el modal insumo producto
-$error = "";
+ /// esta funcion lista en el modal insumo producto
+//if(isset($_POST['btnInsumoProducto'])){
+function listarInsumoProducto(){
 $con= new Conexion();
 $conexion= $con->ConexionDB();
-$insProd=new RELPROINS_MYSQL($con);
+$insProd=new INSUMOS_MYSQL($con);
 $idProducto=$_POST['idProducto'];
-$resultado=$insProd->listar();
 
+$resultado=$insProd->listar($idProducto);
+ echo '<script> $("#ModalaReAgregarInsumo").modal("show"); </script>';
+
+return $resultado;
+if (count($resultado)>0) {
+	return $resultado;	
 }
- ?>}
+else{
+	
+}
+              
+}

@@ -8,7 +8,7 @@
 	<!-- bootstrap -->
     <link href="css/cargando.css" rel="stylesheet">
     
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="css/puglins/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap/dataTables.bootstrap.css" rel="stylesheet">
     <link href="css/puglins/AdminLTE.css" rel="stylesheet">

@@ -7,7 +7,6 @@ require("class/menugrupo.php");
 require("class/PRODUCTOS_MYSQL.class.php");
 require("class/INSUMOS_MYSQL.class.php");
 require("class/RELPROINS_MYSQL.class.php");
-require("CONTROLADORES/insumoProductoController.php");
 
 include "header.php";
 ?>
@@ -69,7 +68,6 @@ if(isset($_POST['btnGuardarInsumoProducto'])){
 <?php 
 include "modal/modalProducto.php";
 include "modal/modalMenuGrupo.php";
-include "modal/modalInsumoProducto.php";
    ?> 
 
 <p>
@@ -146,7 +144,7 @@ include "alerts/cargando.php";
                 <thead><th><CENTER>INSUMO</CENTER></th><th><CENTER>CANTIDAD</CENTER></th><th><CENTER>OPERACION</CENTER></th></button>
                 <form  id='formulario' enctype='multipart/form-data' method='POST'> 
                  <input type='hidden' value=". $row['id'] ." name='idProducto' >
-                  <button class='btn btn-success' data-toggle='modal' name='btnInsumoProducto' data-target='#ModalaAgregarInsumo' onclick='colocarId(". $row['id'] .")'>AGREGAR INSUMO</button>
+                  <button class='btn btn-success' name='btnInsumoProducto' onclick='colocarId(". $row['id'] .")'>AGREGAR INSUMO</button>
                   </form>
                  </thead>
                 <tbody id=''>";
@@ -185,5 +183,10 @@ include "alerts/cargando.php";
  
 <?php
 include "footer.php";
+require("CONTROLADORES/insumoProductoController.php");
+
+include "modal/modalInsumoProducto.php";
+
+
 ?>
     <script src="js/insumoProducto.js"></script>
