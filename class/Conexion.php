@@ -1,7 +1,7 @@
 <?php
 Class Conexion {
       var $servername = "127.0.0.1";
-   var $username = "tito";
+   var $username = "root";
    var $password = "tito_root";
    var $dbname="posgourmet";
    public $conn;
@@ -10,7 +10,7 @@ Class Conexion {
    public function ConexionDB(){
          try {
            
-            $this->conn = new mysqli('localhost','tito','tito_root','posgourmet',3306);
+            $this->conn = new mysqli('localhost','root','','posgourmet',3306);
             if($this->conn->connect_errno){
                 $this->estado= false;
                   
@@ -30,7 +30,7 @@ Class Conexion {
 
    public function Conexion(){
       
-      $mysqli = new mysqli('localhost','tito','tito_root','posgourmet',3306);
+      $mysqli = new mysqli('localhost','root','','posgourmet',3306);
       if ($mysqli->connect_errno){
          
          echo '<script> alert (" NO HAY CONEXION ");</script>';

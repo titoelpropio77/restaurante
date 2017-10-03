@@ -129,3 +129,20 @@ $('#loading').css('display','none');
  
 });
 }
+
+
+function Validar(){
+
+
+
+}
+
+function cargarIdEliminar(boton){
+id=$(boton).attr('id');
+nombre=$(boton).attr('nombre');
+
+$('#nombreProductoModal').text('"'+nombre+'"');
+$('#idProductoEliminar').val(id);
+
+
+}

@@ -8,6 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-sm-12">
+
                     <input type="hidden" name="" id="idProductoA">
                     <div class="form-group col-xs-9">
                         <label for="inputEmail3" class="col-sm-3 control-label">Nombre: </label>
@@ -143,7 +144,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-sm-12">
-                 
+                 <form action="" id="" enctype="" method="POST"> 
                         <div class="form-group col-xs-9">
                             <label for="inputEmail3" class="col-sm-3 control-label">Nombre: </label>
                             <div class="col-sm-9">
@@ -246,7 +247,9 @@
                 </div>                                    
                 <div class="modal-footer">
                     <button type="submit" name="bts" class="btn btn-success">Guardar</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>     
+                </form>
+
                 </div>
             </div>
         </div>      
@@ -259,7 +262,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="text-align: center"><b>NUEVO GRUPO</b></h4>
+                <h4 class="modal-title" style="text-align: center"><b>NUEVA CATEGORIA</b></h4>
 
             </div>
             <div class="modal-body">
@@ -335,6 +338,28 @@
             <div class="modal-footer">
       <button type="submit" name="bts" class="btn btn-success" onclick="guardarGrupo()">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                                    
+            </div>
+            </form>
+        </div>
+    </div>      
+</div>
+
+
+<div class="modal fade in" id="ModalEliminarProducto" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">    
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center"><b>DESEA ELIMINAR EL PRODUCTO <span id="nombreProductoModal"></span></b></h4>
+
+            </div>
+            <div class="modal-body">
+               <form action="" id="" enctype="" method="POST"> 
+                  <input type="hidden" id="idProductoEliminar" name="idProductoEliminar">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="btnEliminarPro" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
             </div>
             </form>
         </div>

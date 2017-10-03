@@ -39,23 +39,43 @@ if($error!=''){
 
 }
 
- /// esta funcion lista en el modal insumo producto
-//if(isset($_POST['btnInsumoProducto'])){
-function listarInsumoProducto(){
+function modificarInsumoProducto(){
+$error = "";
 $con= new Conexion();
 $conexion= $con->ConexionDB();
-$insProd=new INSUMOS_MYSQL($con);
-$idProducto=$_POST['idProducto'];
+$insProd=new RELPROINS_MYSQL($con);
+$ID=$_POST['idInsumoProducto'];
+$CANTIDAD=$_POST['CantidadRelInsPro'];
+$con->transacion();
+$modificar =$insProd->modificar($ID,$CANTIDAD);
+if (!$modificar) {
+	$con->rollback();
+	return false;
+}else{
+	$con->commit();
+	return true;
+}
 
-$resultado=$insProd->listar($idProducto);
- echo '<script> $("#ModalaReAgregarInsumo").modal("show"); </script>';
 
-return $resultado;
-if (count($resultado)>0) {
-	return $resultado;	
 }
-else{
-	
+
+function EliminarInsumoProducto(){
+	$error = "";
+$con= new Conexion();
+$conexion= $con->ConexionDB();
+$insProd=new RELPROINS_MYSQL($con);
+$ID=$_POST['idInsumoEliminar'];
+$eliminar=$insProd->eliminar($ID);
+
+if (!$eliminar) {
+	$con->rollback();
+	return false;
+}else{
+	$con->commit();
+	return true;
 }
-              
 }
+
+ /// esta funcion lista en el modal insumo producto
+//if(isset($_POST['btnInsumoProducto'])){
+
