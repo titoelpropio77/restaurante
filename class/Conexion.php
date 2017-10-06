@@ -10,7 +10,7 @@ Class Conexion {
    public function ConexionDB(){
          try {
            
-            $this->conn = new mysqli('localhost','root','','posgourmet',3306);
+            $this->conn = new mysqli('localhost','posgourmet','root','posgourmet',3306);
             if($this->conn->connect_errno){
                 $this->estado= false;
                   
@@ -30,7 +30,7 @@ Class Conexion {
 
    public function Conexion(){
       
-      $mysqli = new mysqli('localhost','root','','posgourmet',3306);
+      $mysqli = new mysqli('localhost','posgourmet','root','posgourmet',3306);
       if ($mysqli->connect_errno){
          
          echo '<script> alert (" NO HAY CONEXION ");</script>';

@@ -43,8 +43,9 @@ $insumos->modificarCodigoinsumo($insertar);
 	}
 }
 if ($proceso==="cargarDatos") {
-	$resultado=array();
 $id=$_POST['id'];
+$con= new Conexion();
+$conexion= $con->ConexionDB();
 	$insumos= new INSUMOS_MYSQL($con);
 	
 	$resultado= $insumos->buscarXID($id);

@@ -126,9 +126,36 @@ $eliminar=$Prod->eliminar($ID);
     <?php
   }
 }
-?>
+if(isset($_POST['btnGuardarGrupo'])){
+    $error = "";
+$con= new Conexion();
+$conexion= $con->ConexionDB();
+$grupo=new GRUPOS_MYSQL($con);
+$nombre=$_POST['nombre'];
+$grupo->contructor('',$nombre,0,0,0);
+$insertar=$grupo->insertar();
+  if($insertar){  
+    ?>
+    <p></p>
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <strong>Listo!</strong> Registro Modificado con exito... <a href="productos.php">Listar productos</a>.
+    </div>
+    <?php
+  } else{
+    ?>
+    <p></p>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <strong>Error!</strong> INTENTE NUEVAMENTE
+    </div>
+    <?php
+  }
+}
+
 
 ?>
+
 
 
 
@@ -141,7 +168,6 @@ $eliminar=$Prod->eliminar($ID);
 <?php 
 include "modal/modalProducto.php";
 include "modal/modalMenuGrupo.php";
-include "modal/modalGrupo.php";
    ?> 
 
 <p>
@@ -259,7 +285,7 @@ include "alerts/cargando.php";
                 <thead><th><CENTER>GRUPO</CENTER></th><th><CENTER>FACTOR</CENTER></th><th><CENTER>OPERACION</CENTER></th></button>
                
                  <input type='hidden' value=". $row['id'] ." name='idProducto' >
-                  <button class='btn btn-success btn-xs' name='btnInsumoProducto' onclick='colocarId(". $row['id'] .")'>AGREGAR GRUPO</button>
+                  <button class='btn btn-success btn-xs' name='btnInsumoProducto' onclick='colocarId(". $row['id'] .")'>INSETAR A GRUPO</button>
                  </thead>
                 <tbody id=''>";
                           foreach ($lista as $key => $value) {
@@ -275,7 +301,12 @@ include "alerts/cargando.php";
              </table> </div>  </div>"  ;
                          }
                          else{
-                          echo "<button class='btn btn-info' data-toggle='modal' data-target='#ModalaAgregarGrupo' >AGREGAR GRUPO</button>";
+                          echo "
+                          <form  id='formulario' enctype='multipart/form-data' method='POST'> 
+                          <input name='producto' type='hidden' value='".$row['id']."'>
+                          <button class='btn btn-info' name='btnGrupo' >INSERTAR A GRUPO</button>
+                            <form>
+                          ";
                          }
                           ?>
                     </tr>
@@ -294,9 +325,11 @@ include "alerts/cargando.php";
 <?php
 include "footer.php";
 
+include "modal/modalGrupo.php";
 
 include "modal/modalInsumoProducto.php";
 
 
 ?>
     <script src="js/insumoProducto.js"></script>
+    <script src="js/grupo.js"></script>

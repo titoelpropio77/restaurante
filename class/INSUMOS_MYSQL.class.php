@@ -12,7 +12,6 @@ class INSUMOS_MYSQL {
 
 
 
-public $CONN;
 	/**
 	 * @var COD_INS
 	 */
@@ -79,7 +78,9 @@ public $CONN;
 	public $UNIDAD ;
 	public $ID ;
 
-function INSUMOS_MYSQL($con) {$this->CON=$con;}
+function INSUMOS_MYSQL($con) {
+	$this->CON=$con;
+}
 
 	function contructor($COD_INS,$NOM_INSUMO,$STOCK_MIN,$STOCK_ACT,$MEDIDA,$MEDIDAM,$OPE_MM,$VAL_FOR_MM,$OPE_MX,$MEDIDAX,$VAL_FOR_MX,$ADICIONADO,$CAN_ADI,$ESTADO,$COD_PROD,$UNIDAD,$ID){
 	$this->COD_INS=$COD_INS;
@@ -111,8 +112,8 @@ $consulta="INSERT INTO insumos_mysql(COD_INS,NOM_INSUMO,STOCK_MIN,STOCK_ACT,MEDI
 }
 
 function rellenar($resultado){
-        if ($resultado->num_rows > 0) {
-            $lista=array();
+        if (count($resultado) > 0) {
+           $lista = array();
             while($row = $resultado->fetch_assoc()) {
 	$insumos_mysql= new INSUMOS_MYSQL("");
 
@@ -133,8 +134,10 @@ function rellenar($resultado){
 		$insumos_mysql->COD_PROD=$row["COD_PROD"] ==null?"":$row["COD_PROD"];
 		$insumos_mysql->UNIDAD=$row["UNIDAD"] ==null?"":$row["UNIDAD"];
 		$insumos_mysql->ID=$row["ID"] ==null?"":$row["ID"];
-		$lista[]=$insumos_mysql;};
-	return $lista;}
+		$lista[]=$insumos_mysql;
+	}
+	return $lista;
+}
 	else{
             return null;
         }}
@@ -153,7 +156,8 @@ function buscarXID($id){
         if($insumos_mysql==null){
             return null;
         }
-        return $this->rellenar($result);
+
+        return  $insumos_mysql;
     }
 
     
@@ -182,7 +186,7 @@ function buscarXID($id){
    	$consulta="select distinct * from insumos_mysql where (NOT EXISTS(SELECT *from relproins_mysql,productos_mysql where relproins_mysql.COD_PROD=productos_mysql.cod_prod and relproins_mysql.COD_INS=insumos_mysql.COD_INS and productos_mysql.cod_prod=".$id." )) ";
    	 $result=$this->CON->consulta($consulta);
         $insumos_mysql=$this->rellenar($result);
-  if($insumos_mysql==null){
+          if($insumos_mysql==null){
             return null;
         }
         return $insumos_mysql;

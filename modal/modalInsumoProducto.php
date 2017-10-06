@@ -168,7 +168,7 @@ $listainsumo=$insProd->listar($idProducto);
 
 
 <div class="modal fade in" id="ModalModificarCantidadInsumo" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-lg">    
+    <div class="modal-dialog">    
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -176,15 +176,13 @@ $listainsumo=$insProd->listar($idProducto);
 
             </div>
             <div class="modal-body">
-     <form action="" id="" enctype="" method="POST"> 
-    
-            <div class="form-group">
-              <input type="hidden" name="idInsumoProducto" class="form-control" >
-
-            <label for="CantidadInsumo">CANTIDAD</label>
-              <input type="text" name="CantidadRelInsPro" class="form-control" >
+                  <form action="" id="" enctype="" method="POST"> 
+                   <input type="hidden" name="idInsumoProducto" class="form-control" >
+                      <div class="form-group col-sm-5">
+                          <label for="CantidadInsumo">CANTIDAD</label>
+                          <input type="text" name="CantidadRelInsPro" class="form-control" >
+                      </div>
             </div>
-        </div>
          <div class="modal-footer">
                 <button type="submit" id="btnGuardar" name="bnModificarCantidadRelPro" class="btn btn-success" onclick="">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        

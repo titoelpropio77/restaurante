@@ -91,16 +91,68 @@ $('#loading').css('display','none');
 
 function cargarDatos(id){
 url='../CONTROLADORES/insumoController.php';
-
+	NombreInsumo=$('#NombreInsumoA');
+	MedidaVenta=$('#MedidaVentaA');
+	StockMinimo=$('#StockMinimoA');
+	StockActual=$('#StockActualA');
+	MedidaMedia=$('#MedidaMediaA');
+	OperadorMedia=$('#OperadorMediaA');
+	EquivalenciaMedia=$('#EquivalenciaMediaA');
+	MedidaMaxima=$('#MedidaMaximaA');
+	OperadorMaxima=$('#OperadorMaximaA');
+	EquivalenciaMaxima=$('#EquivalenciaMaximaA');
 $.ajax({
 url:url,
 type:'POST',
 typedata:'json',
 data:{proceso:'cargarDatos',id:id},
 success:function(res){
-alert(res.COD_PROD);
+	  var json = $.parseJSON(res);
+
+
+	NombreInsumo.val(json.result[0]['NOM_INSUMO']);
+	MedidaVenta.val(json.result[0]['MEDIDA']);
+	StockMinimo.val(json.result[0]['STOCK_MIN']);
+	StockActual.val(json.result[0]['STOCK_ACT']);
+	MedidaMedia.val(json.result[0]['MEDIDAM']);
+	OperadorMedia.val(json.result[0]['OPE_MM']);
+
+
+	EquivalenciaMedia.val(json.result[0]['VAL_FOR_MM']);
+	MedidaMaxima.val(json.result[0]['MEDIDAX']);
+	OperadorMaxima.val(json.result[0]['OPE_MX']);
+	EquivalenciaMaxima.val(json.result[0]['VAL_FOR_MX']);
+
+// for (var i = 0; i < json.result[0].length; i++) {
+// 	alert(res);
+// }
 }
 
 });
 
+}
+
+
+
+function actualizarDatos(){
+	url='../CONTROLADORES/insumoController.php';
+	NombreInsumo=$('#NombreInsumoA');
+	MedidaVenta=$('#MedidaVentaA');
+	StockMinimo=$('#StockMinimoA');
+	StockActual=$('#StockActualA');
+	MedidaMedia=$('#MedidaMediaA');
+	OperadorMedia=$('#OperadorMediaA');
+	EquivalenciaMedia=$('#EquivalenciaMediaA');
+	MedidaMaxima=$('#MedidaMaximaA');
+	OperadorMaxima=$('#OperadorMaximaA');
+	EquivalenciaMaxima=$('#EquivalenciaMaximaA');
+
+	$.ajax({
+		url:url,
+		type:'POST',
+		datatype:'json',
+		data:{id:id,NombreInsumo:NombreInsumo,MedidaVenta:MedidaVenta,StockMinimo:StockMinimo,StockActual:StockActual,
+			MedidaMedia:MedidaMedia,OperadorMaxima:OperadorMaxima,EquivalenciaMaxima:EquivalenciaMaxima}
+			});
+		}
 }

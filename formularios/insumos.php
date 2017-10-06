@@ -4,6 +4,7 @@ require("../class/Conexion.php");
 require("../class/INSUMOS_MYSQL.class.php");
 require("../class/PRODUCTOS_MYSQL.class.php");
 include "headerF.php";
+include "../modal/modalInsumos.php";
 ?>
 
 
@@ -117,7 +118,11 @@ include "headerF.php";
                  $listainsumo = $insumos->todo();
                 for ($i=0; $i <count($listainsumo) ; $i++) { 
                   
-                  echo '<tr  style="  text-align: center;"><td>'.$listainsumo[$i]->COD_INS.'<td>'.$listainsumo[$i]->NOM_INSUMO.'<td>'.$listainsumo[$i]->MEDIDA.'<td>'.$listainsumo[$i]->STOCK_MIN.'<td>'.$listainsumo[$i]->STOCK_ACT.'<td>'.$listainsumo[$i]->ESTADO.'<td>'.$listainsumo[$i]->CAN_ADI.'<td><button onclick="cargarDatos('.$listainsumo[$i]->ID.')"  class="btn btn-info" title="EDITAR PRODUCTO" data-toggle="modal" data-target="#ModalModificarGrupo"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></tr>';
+                  echo '<tr  style="  text-align: center;"><td>'.$listainsumo[$i]->COD_INS.'<td>'.$listainsumo[$i]->NOM_INSUMO.'<td>'.$listainsumo[$i]->MEDIDA.'<td>'.$listainsumo[$i]->STOCK_MIN.'<td>'.$listainsumo[$i]->STOCK_ACT.'<td>'.$listainsumo[$i]->ESTADO.'
+                  <td>'.$listainsumo[$i]->CAN_ADI.'
+                  <td><button title="MODIFICAR INSUMO" onclick="cargarDatos('.$listainsumo[$i]->ID.')"  class="btn btn-info" title="EDITAR PRODUCTO" data-toggle="modal" data-target="#ModalModificarInsumos"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger"  title="ELIMINAR INSUMO"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-success" title="AUMENTAR STOCK"><i class="fa fa-plus"></i></button></tr>';
                 }
                 // if ($listaregional !== null) {
                 //     for ($index = 0; $index < count($listaregional); $index++) {
