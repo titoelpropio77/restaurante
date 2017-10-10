@@ -1,5 +1,6 @@
 
 <div class="modal fade in" id="ModalaAgregarInsumo" role="dialog" data-backdrop="static">
+   <form action="" id="formulario" enctype="multipart/form-data" method="POST"> 
     <div class="modal-dialog modal-lg">    
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +9,7 @@
 
             </div>
             <div class="modal-body">
-     <form action="" id="formulario" enctype="multipart/form-data" method="POST"> 
+    
       <input type="hidden" id="idProducto" name="producto">         
 <table id="ghatable" class="ghatable display table table-bordered table-stripe table-hover table-responsive" cellspacing="0" width="100%"> <!--jquery.dataTables.min.js -->
      
@@ -53,11 +54,12 @@
             <div class="modal-footer">
                 <button type="submit" id="btnGuardar" name="btnGuardarInsumoProducto" class="btn btn-success" onclick="">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
-</form> 
+
             </div>
-            </form>
+      
         </div>
     </div>      
+          </form>
 </div>
 
 
@@ -66,6 +68,8 @@
 
 
 <div class="modal fade in" id="ModalaReAgregarInsumo" role="dialog" data-backdrop="static">
+    <form action="" id="formulario" enctype="multipart/form-data" method="POST"> 
+
     <div class="modal-dialog modal-lg">    
         <div class="modal-content">
             <div class="modal-header">
@@ -74,7 +78,6 @@
 
             </div>
             <div class="modal-body">
-     <form action="" id="formulario" enctype="multipart/form-data" method="POST"> 
 <?php 
  if(isset($_POST['btnInsumoProducto'])){
   $con= new Conexion();
@@ -133,17 +136,19 @@ $listainsumo=$insProd->listar($idProducto);
             <div class="modal-footer">
                 <button type="submit" id="btnGuardar" name="btnGuardarInsumoProducto" class="btn btn-success" onclick="">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
-</form> 
             </div>
-            </form>
         </div>
-    </div>      
+    </div>    
+</form> 
+
 </div>
 
 
 
 
 <div class="modal fade in" id="ModalEliminarInsumoProducto" role="dialog" data-backdrop="static">
+               <form action="" id="" enctype="" method="POST"> 
+
     <div class="modal-dialog">    
         <div class="modal-content">
             <div class="modal-header">
@@ -152,22 +157,24 @@ $listainsumo=$insProd->listar($idProducto);
 
             </div>
             <div class="modal-body">
-               <form action="" id="" enctype="" method="POST"> 
                   <input type="hidden" id="idInsumoEliminar" name="idInsumoEliminar">
             </div>
             <div class="modal-footer">
                 <button type="submit" name="btnEliminarInsPro" class="btn btn-success">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
             </div>
-            </form>
         </div>
-    </div>      
+    </div>  
+            </form>
+
 </div>
 
 
 
 
 <div class="modal fade in" id="ModalModificarCantidadInsumo" role="dialog" data-backdrop="static">
+                  <form action="" id="" enctype="" method="POST"> 
+
     <div class="modal-dialog">    
         <div class="modal-content">
             <div class="modal-header">
@@ -176,19 +183,25 @@ $listainsumo=$insProd->listar($idProducto);
 
             </div>
             <div class="modal-body">
-                  <form action="" id="" enctype="" method="POST"> 
+              <div class="col-sm-12">
                    <input type="hidden" name="idInsumoProducto" class="form-control" >
                       <div class="form-group col-sm-5">
                           <label for="CantidadInsumo">CANTIDAD</label>
                           <input type="text" name="CantidadRelInsPro" class="form-control" >
                       </div>
+                      </div>
             </div>
          <div class="modal-footer">
                 <button type="submit" id="btnGuardar" name="bnModificarCantidadRelPro" class="btn btn-success" onclick="">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
-              </form> 
             </div>
-    </div>      
+    </div>   
+             
+
 </div>
+ </form> 
+
+</div>
+
 
 

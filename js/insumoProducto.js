@@ -1,6 +1,7 @@
 function colocarId(id){
 
 $('#idProducto').val(id);
+$('input[name=producto]').val(id);
 }
 function habilitarInput(index){
 	cantidad=$('#cantidadInsumo'+index).attr('habilitado');

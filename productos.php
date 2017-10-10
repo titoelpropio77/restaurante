@@ -10,6 +10,7 @@ require("class/GRUPOS_MYSQL.class.php");
 require("class/RELPROINS_MYSQL.class.php");
 require("class/RELPROGRU_MYSQL.class.php");
 require("CONTROLADORES/insumoProductoController.php");
+require("CONTROLADORES/productoGrupoController.php");
 include "header.php";
 ?>
 
@@ -126,15 +127,9 @@ $eliminar=$Prod->eliminar($ID);
     <?php
   }
 }
-if(isset($_POST['btnGuardarGrupo'])){
-    $error = "";
-$con= new Conexion();
-$conexion= $con->ConexionDB();
-$grupo=new GRUPOS_MYSQL($con);
-$nombre=$_POST['nombre'];
-$grupo->contructor('',$nombre,0,0,0);
-$insertar=$grupo->insertar();
-  if($insertar){  
+if(isset($_POST['btnGuardarGrupoProducto'])){
+   
+  if(guardarProductoGrupo()){  
     ?>
     <p></p>
     <div class="alert alert-success alert-dismissible" role="alert">
@@ -152,8 +147,6 @@ $insertar=$grupo->insertar();
     <?php
   }
 }
-
-
 ?>
 
 
@@ -241,13 +234,15 @@ include "alerts/cargando.php";
 
                   if (count($lista)) {
                         echo "<div class='box box-danger direct-chat direct-chat-warning collapsed-box' id='' ><button type='button' class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'></i></button>
+                        
              <div class='box-body' style='display: none;'>
-             <table class=''>
-                <thead><th><CENTER>INSUMO</CENTER></th><th><CENTER>CANTIDAD</CENTER></th><th><CENTER>OPERACION</CENTER></th></button>
-                <form  id='formulario' enctype='multipart/form-data' method='POST'> 
+              <form   method='POST'> 
                  <input type='hidden' value=". $row['id'] ." name='idProducto' >
-                  <button class='btn btn-success' name='btnInsumoProducto' onclick='colocarId(". $row['id'] .")'>AGREGAR INSUMO</button>
+                  <button class='btn btn-success' name='btnInsumoProducto' >AGREGAR INSUMO</button>
                   </form>
+             <table class='table-striped table-bordered table-condensed '>
+                <thead><th><CENTER>INSUMO</CENTER></th><th><CENTER>CANTIDAD</CENTER></th><th><CENTER>OPERACION</CENTER></th></button>
+               
                  </thead>
                 <tbody id=''>";
             
@@ -280,12 +275,15 @@ include "alerts/cargando.php";
 
                        if (count($lista)) {
                          echo "<div class='box box-danger direct-chat direct-chat-warning collapsed-box' id='' ><button type='button' class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'></i></button>
+                          <form    method='POST'> 
              <div class='box-body' style='display: none;'>
+             <input type='hidden' value=". $row['id'] ." name='producto' >
+                  <button class='btn btn-success btn-xs' name='btnGrupo' >INSETAR A GRUPO</button>
+                       </form>
              <table class=''>
                 <thead><th><CENTER>GRUPO</CENTER></th><th><CENTER>FACTOR</CENTER></th><th><CENTER>OPERACION</CENTER></th></button>
                
-                 <input type='hidden' value=". $row['id'] ." name='idProducto' >
-                  <button class='btn btn-success btn-xs' name='btnInsumoProducto' onclick='colocarId(". $row['id'] .")'>INSETAR A GRUPO</button>
+                 
                  </thead>
                 <tbody id=''>";
                           foreach ($lista as $key => $value) {
@@ -302,10 +300,10 @@ include "alerts/cargando.php";
                          }
                          else{
                           echo "
-                          <form  id='formulario' enctype='multipart/form-data' method='POST'> 
+                          <form    method='POST'> 
                           <input name='producto' type='hidden' value='".$row['id']."'>
-                          <button class='btn btn-info' name='btnGrupo' >INSERTAR A GRUPO</button>
-                            <form>
+                          <button class='btn btn-info' name='btnGrupo' id='btnGrupo".$row['id']."'>INSERTAR A GRUPO</button>
+                            </form>
                           ";
                          }
                           ?>
@@ -324,12 +322,49 @@ include "alerts/cargando.php";
  
 <?php
 include "footer.php";
-
 include "modal/modalGrupo.php";
-
 include "modal/modalInsumoProducto.php";
+
+
+
 
 
 ?>
     <script src="js/insumoProducto.js"></script>
     <script src="js/grupo.js"></script>
+<?php 
+
+if(isset($_POST['btnGuardarGrupo'])  ){
+    $error = "";
+$con= new Conexion();
+$conexion= $con->ConexionDB();
+$grupo=new GRUPOS_MYSQL($con);
+$nombre=$_POST['nombre'];
+$id=$_POST['idProducto'];
+$grupo->contructor('',$nombre,0,0,0);
+$insertar=$grupo->insertar();
+$modificar=$grupo->modificar($insertar);
+echo "<script>
+$('#btnGrupo".$id."').click();
+</script>
+";
+  if($insertar){  
+    ?>
+    <p></p>
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <strong>Listo!</strong> Registro Modificado con exito... <a href="productos.php">Listar productos</a>.
+    </div>
+    <?php
+  } else{
+    ?>
+    <p></p>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <strong>Error!</strong> INTENTE NUEVAMENTE
+    </div>
+    <?php
+  }
+}
+
+ ?>

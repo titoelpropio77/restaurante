@@ -8,11 +8,10 @@
 
             </div>
             <div class="modal-body">
-              <button class="btn btn-success"  data-toggle='modal' data-target='#ModalaAgregarGrupo' >AGREGAR NUEVO GRUPO</button>
+             
      <form action="" id="formulario" enctype="multipart/form-data" method="POST"> 
 
-      <input type="hidden" id="idProducto" name="producto">   
-   
+    <button type="button" class="btn btn-success"  data-toggle='modal' data-target='#ModalaAgregarGrupo' onclick="colocarId()">AGREGAR NUEVO GRUPO</button>
 <table id="ghatable" class="ghatable display table table-bordered table-stripe table-hover table-responsive" cellspacing="0" width="100%"> <!--jquery.dataTables.min.js -->
      
      <thead style="text-align: center">
@@ -29,38 +28,39 @@
      </thead>
      <tbody>
          <?php
-        if(isset($_POST['btnGrupo'])){
+        if(isset($_POST['btnGrupo']) ){
     $error = "";
 $con= new Conexion();
 $conexion= $con->ConexionDB();
-$grupo=new RELPROGRU_MYSQL($con);
-$id=$_POST['id'];
+$grupo=new GRUPOS_MYSQL($con);
+$id=$_POST['producto'];
+echo "<input name='idproducto' type='hidden' value='".$id."'>";
 $lista=$grupo->buscarDistinto($id);
 if (count($lista)) {
   foreach ($lista as $key => $value) {
          echo "<tr>
-          <td>".$value->COD_PROD."
-          <td>".$value->NOM_PROD."
+          <td>".$value->COD_GRUPO."
+          <td>".$value->NOM_GRUPO."
           <td>".$value->ORDEN."
           <td><button class='btn btn-success'>eliminar</button>
-          <td><input type='checkbox' onclick='habilitarInputG(0)'>
-          <td><input type='text' habilitado='true' id='factor0' disabled='disabled'>
-         </tr>" 
+          <td><input type='checkbox' value='".$value->ID."' name='grupoProducto[]' onclick='habilitarInputG(".$key.")'>
+          <td><input type='text' habilitado='true' id='factor".$key."' name='factorProducto[]' disabled='disabled' class='form-control'>
+         </tr>" ;
   }
 }
+ echo '<script> $("#ModalaAgregarGrupoProducto").modal("show"); </script>';
 
-
+}
                
                 ?>
      </tbody>
 </table>  
             </div>
             <div class="modal-footer">
-                <button type="submit" id="btnGuardar" name="btnGuardarInsumoProducto" class="btn btn-success" onclick="">Guardar</button>
+                <button type="submit" id="btnGuardar" name="btnGuardarGrupoProducto" class="btn btn-success" onclick="">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
 </form> 
             </div>
-            </form>
         </div>
     </div>      
 </div>
@@ -68,6 +68,7 @@ if (count($lista)) {
 
 
 <div class="modal fade in" id="ModalaAgregarGrupo" role="dialog" data-backdrop="static">
+     <form action="" id="formulario" enctype="multipart/form-data" method="POST"> 
     <div class="modal-dialog modal-lg">    
         <div class="modal-content">
             <div class="modal-header">
@@ -76,7 +77,16 @@ if (count($lista)) {
 
             </div>
             <div class="modal-body">
-     <form action="" id="formulario" enctype="multipart/form-data" method="POST"> 
+  
+    <?php 
+
+  if(isset($_POST['btnGrupo'])){
+  
+$id=$_POST['producto'];
+echo "<input type='hidden' value='".$id."'  class='form-control' name='idProducto' >";
+
+}
+     ?>
       <div class="form-group col-xs-5">
         <label>GRUPO</label>
         <input type="text" name="nombre" class="form-control">
@@ -84,13 +94,13 @@ if (count($lista)) {
             </div>
             <div class="modal-footer">
                 <button type="submit" id="btnGuardar" name="btnGuardarGrupo" class="btn btn-success" onclick="">Guardar</button>
-                </form> 
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
 
             </div>
-            </form>
         </div>
-    </div>      
+    </div> 
+            </form>
+
 </div>
 
 

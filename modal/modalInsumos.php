@@ -1,6 +1,7 @@
 
 
 <div class="modal fade in" id="ModalGuardarInsumos" role="dialog" data-backdrop="static">
+    <form role="form" method="post">
     <div class="modal-dialog modal-lg" style="width: 100%">    
         <div class="modal-content">
             <div class="modal-header">
@@ -16,14 +17,17 @@
                 <button type="submit" name="bts" class="btn btn-success" onclick="guardarInsumos()">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
             </div>
-            </form>
+      
         </div>
-    </div>      
+    </div>   
+          </form>   
 </div>
 
 
 
-<div class="modal fade in" id="ModalModificarInsumos" role="dialog" data-backdrop="static">
+<div class="modal fade in" id="ModalModificarInsumos" role="dialog" data-backdrop="static">ç
+    <form role="form" method="post">   
+
     <div class="modal-dialog modal-lg"  style="width: 100%">    
         <div class="modal-content">
             <div class="modal-header">
@@ -32,8 +36,7 @@
 
             </div>
             <div class="modal-body">
-                <form role="form" method="post">   
-               <div class="col-sm-12">   
+                               <div class="col-sm-12">   
    <div class="col-sm-10">   
                     <div class="form-group col-xs-3">
 
@@ -112,9 +115,11 @@
             <div class="modal-footer">
                 <button type="submit" name="bts" class="btn btn-success" onclick="">GUARDAR</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
-                </form>  
             </div>
-            </form>
         </div>
-    </div>      
+    </div>    
+                </form>  
+
 </div>
+
+
