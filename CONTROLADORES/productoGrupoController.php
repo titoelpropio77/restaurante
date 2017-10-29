@@ -1,33 +1,45 @@
 <?php 
 
+include_once "../class/Conexion.php";
+include_once "../class/RELPROGRU_MYSQL.class.php";
+include_once "../class/GRUPOS_MYSQL.class.php";
 
-function guardarProductoGrupo(){
-$error = "";
+$proceso=$_POST['proceso'];
 $con= new Conexion();
 $conexion= $con->ConexionDB();
-$insProd=new RELPROGRU_MYSQL($con);
-$COD_PROD=$_POST['idproducto'];
-
-$COD_GRUPO=$_POST['grupoProducto'];
-$FACTOR=$_POST['factorProducto'];
-for ($i=0; $i <count($COD_GRUPO) ; $i++) { 
-	$insProd->contructor(0,$COD_GRUPO[$i],$COD_PROD,0,0,$FACTOR[$i],'',0,0);
-$insertar=$insProd->insertar();
-if ($insertar===0) {
-	$error='ERROR AL INSERTAR DATOS';
-}
-
-
-}
-if($error!=''){
-	return false;
-}else{
-	return true;
-
-}
+$error = "";
+$resultado = "";
+if (!$con->estado) {
+    $error = "No se pudo establecer conexion. Intente nuevamente.";
+    $reponse = array("error" => $error, "result" => $resultado);
+    echo  json_encode($reponse);
+    return;
 
 }
 
 
 
+switch ($proceso) {
+	case 'guardar':
+
+		break;
+	case 'listarProductoGrupo':
+	   $id=$_POST['id'];
+	   $progru=new GRUPOS_MYSQL($con);
+	   $lista=$progru->listarProductoGrupo($id);
+	   if ($lista) {
+	  $resultado=$lista;
+	   }else{
+	   	$resultado="";
+	   }
+		break;
+
+		
+	default:
+		# code...
+		break;
+}
+
+$reponse = array("error" => $error, "result" => $resultado);
+echo  json_encode($reponse);
  ?>

@@ -155,4 +155,3 @@ function actualizarDatos(){
 			MedidaMedia:MedidaMedia,OperadorMaxima:OperadorMaxima,EquivalenciaMaxima:EquivalenciaMaxima}
 			});
 		}
-}

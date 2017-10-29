@@ -7,6 +7,7 @@ class producto
 	public $id;
 	public $cod_prod;
 	public $nom_prod;
+	public $nom_grupo;
 	public $cantidad;
 	public $pre_venta;
 	public $unid;
@@ -49,13 +50,14 @@ class producto
 	}
 
     function rellenar($resultado) {
-        if ($resultado->num_rows > 0) {
+        if (count($resultado)> 0) {
             $lista = array();
             while ($row = $resultado->fetch_assoc()) {
                 $producto = new producto("");
                 $producto->id = $row['id'] == null ? "" : $row['id'];
                 $producto->cod_prod = $row['cod_prod'] == null ? "" : $row['cod_prod'];
                 $producto->nom_prod = $row['nom_prod'] == null ? "" : $row['nom_prod'];
+                $producto->nom_grupo = $row['nom_grupo'] == null ? "" : $row['nom_grupo'];
                 $producto->cantidad = $row['cantidad'] == null ? "" : $row['cantidad'];
                 $producto->pre_venta = $row['pre_venta'] == null ? "" : $row['pre_venta'];
                 $producto->estado = $row['estado'] == null ? "" : $row['estado'];
@@ -77,11 +79,24 @@ class producto
         }
     }
 	function ListarDadaId($id){
-			$consulta="select *from productos_mysql where productos_mysql.id=$id";
+			 $consulta="select  productos_mysql.id,
+            productos_mysql.cod_prod,
+            productos_mysql.nom_prod,
+            productos_mysql.barcode,
+            productos_mysql.disponible,
+            productos_mysql.familia,
+            productos_mysql.cantidad,
+            productos_mysql.unid,
+            productos_mysql.pre_venta,
+            productos_mysql.estado,
+            productos_mysql.grupo,
+            productos_mysql.presa,
+            productos_mysql.colores,            
+            menugrupo_mysql.nom_grupo from productos_mysql,menugrupo_mysql where productos_mysql.GRUPO=menugrupo_mysql.ID AND productos_mysql.id=".$id;
 			   $result = $this->CON->consulta($consulta);
         $producto = $this->rellenar($result);
         if ($producto == null) {
-            return null;
+            return "";
         }
         return $producto[0];
    		 }
@@ -91,10 +106,85 @@ class producto
         return $this->CON->manipular($consulta);
     }
    		 
-			
-	}
-	  
 	
+function todo(){
+        $consulta="SELECT
+            productos_mysql.id,
+            productos_mysql.cod_prod,
+            productos_mysql.nom_prod,
+            productos_mysql.barcode,
+            productos_mysql.disponible,
+            productos_mysql.familia,
+            productos_mysql.cantidad,
+            productos_mysql.unid,
+            productos_mysql.pre_venta,
+            productos_mysql.estado,
+            productos_mysql.grupo,
+            productos_mysql.presa,
+            productos_mysql.colores,            
+            menugrupo_mysql.nom_grupo
+            FROM
+            productos_mysql
+            INNER JOIN menugrupo_mysql ON productos_mysql.grupo = menugrupo_mysql.grupo ";
+        $result=$this->CON->consulta($consulta);
+        $relproins_mysql=$this->rellenar($result);
+        if($relproins_mysql==null){
+            return null;
+        }
+        return $relproins_mysql;
+    }
 
 
- ?>
+    function mostrar($id){
+        $consulta="select productos_mysql.id,
+            productos_mysql.cod_prod,
+            productos_mysql.nom_prod,
+            productos_mysql.barcode,
+            productos_mysql.disponible,
+            productos_mysql.familia,
+            productos_mysql.cantidad,
+            productos_mysql.unid,
+            productos_mysql.pre_venta,
+            productos_mysql.estado,
+            productos_mysql.grupo,
+            productos_mysql.presa,
+            productos_mysql.colores,            
+            menugrupo_mysql.nom_grupo from productos_mysql,menugrupo_mysql where productos_mysql.grupo=menugrupo_mysql.GRUPO and  productos_mysql.grupo=".$id;
+          $result=$this->CON->consulta($consulta);
+        $relproins_mysql=$this->rellenar($result);
+        if($relproins_mysql==null){
+            return "";
+        }
+        return $relproins_mysql;
+    }
+      
+
+      function insertar() { 
+   $consulta = sprintf("INSERT INTO productos_mysql (id, nom_prod, estado, cantidad, unid, pre_venta, grupo, disponible, presa, colores, barcode, familia) values(null, '".$this->nom_prod."', '".$this->estado."',".$this->cantidad.",".$this->unid.",".$this->pre_venta.",".$this->grupo.",'".$this->disponible."'
+    ,'".$this->presa."','".$this->colores."','".$this->barcode."','".$this->familia."')");     
+
+if (!$this->CON->manipular($consulta)) 
+            return 0;
+
+        $consulta = "SELECT LAST_INSERT_ID() as id";
+        $resultado = $this->CON->consulta($consulta);
+       
+        return $resultado->fetch_assoc()['id'];
+  
+}
+
+function modificarCodigo($id){
+
+     $consulta="update productos_mysql 
+    set cod_prod=".$id."
+    where id=".$id;
+    if (!$this->CON->manipular($consulta)) 
+            return false;
+
+            return true;
+}
+
+	 } //finclase
+
+
+ ?>    

@@ -9,7 +9,6 @@ Class Conexion {
    
    public function ConexionDB(){
          try {
-           
             $this->conn = new mysqli('localhost','posgourmet','root','posgourmet',3306);
             if($this->conn->connect_errno){
                 $this->estado= false;
@@ -63,7 +62,7 @@ Class Conexion {
    }
    function consulta($sql){
         $result = $this->conn->query($sql);
-        if ($result->num_rows > 0) {
+        if (count($result) > 0) {
             return $result;
         } else {
             return null;

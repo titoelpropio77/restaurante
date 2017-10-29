@@ -45,6 +45,14 @@ $con->transacion();
 	$resultado= $menugrupo->ListarDadaId($id);
 
 }
+
+
+if ($proceso==="mostrarTodo") {
+
+ $menugrupo=new menugrupo($con);
+ $resultado= $menugrupo->todo();
+}
+
 $reponse = array("error" => $error, "result" => $resultado);
 echo  json_encode($reponse);
  ?>

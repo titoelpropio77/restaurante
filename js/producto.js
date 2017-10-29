@@ -1,4 +1,69 @@
 
+$(document).ready(function(){
+
+ listar();
+
+});
+     
+  
+
+
+var listar =function (){
+ $('#ghatable').DataTable().destroy();
+  
+ datos=$('#datos');
+ datos.empty();
+ fila="";
+ $.ajax({
+  url:'CONTROLADORES/productoController.php',
+  type:'POST',
+  typeData:'json',
+  data:{proceso:'listar'},
+  success:function(res){
+      var json = $.parseJSON(res);
+    
+    fila=json.result;
+    datos.append(fila);
+      paginador();
+   $('#loading').css('display','none');  
+      
+  }
+ });
+
+}
+
+
+function guardarProducto(){
+  nombreProd=$('#nom_prod').val();
+  estado=$('#estado').val();
+  cantidad=$('#cantidad').val();
+  unidad=$('#unid').val();
+  pre_venta=$('#pre_venta').val();
+  selectGrupo=$('#selectGrupo').val();
+  disponible=$('#disponible').val();
+  sujiere=$('#sujiere').val();
+  colores=$('#colores').val();
+  barcode=$('#barcodeI').val();
+  $.post("CONTROLADORES/productoController.php",{proceso:"guardar",nombre:nombreProd,estado:estado,cantidad:cantidad,unidad:unidad,pre_venta:pre_venta,selectGrupo:selectGrupo,
+    disponible:disponible,sujiere:sujiere,colores:colores,barcode:barcode},function(res){
+      var json=  $.parseJSON(res);
+  if (json.error.length > 0) {
+            if ("Error Session" === json.error) {
+                // padreSession.click();
+                 // alert("json.result['id']");
+            }
+            alert("ERROR NO GUARDO LOS DATOS");
+                 // alert("json.result['id']");
+                 return; 
+        }
+        alertify.success("GUARDADO CORRECTAMENTE");
+        $('#myModal').modal("hide");
+         listar();
+    });
+
+}
+
+
 function cargarDatosProducto(id){
 var url="CONTROLADORES/productoController.php";
 	idProducto=$('#idProductoA');
@@ -12,7 +77,7 @@ unid=$('#unidA');
 grupo=$('#grupoA');
 disponible=$('#disponibleA');
 sugiere=$('#sugiereA');
-colorProducto=$('#colorProducto');
+colorProducto=$('#colorProductoA');
 barcode=$('#barcode');
 familia=$('#familiaA');
 $('#loading').css('display','block');
@@ -32,7 +97,7 @@ $.ajax({
 
         }else{
  }
-
+if (json.result!="") {
  idProducto.val(json.result['id']);
  nombreProducto.val(json.result['nom_prod']);
  estado.val(json.result['estado']);
@@ -45,6 +110,12 @@ $.ajax({
  colorProducto.val(json.result['colores']);
  barcode.val(json.result['barcode']);
  familia.val(json.result['familia']);
+$('#myModaledit').modal('show');
+}
+else{
+  alertify.error("ERROR INTENTE NUEVAMENTE");
+
+}
 $('#loading').css('display','none');
 
         }
@@ -100,7 +171,7 @@ unid=$('#unidA').val();
 grupo=$('#grupoA').val();
 disponible=$('#disponibleA').val();
 sugiere=$('#sugiereA').val();
-colorProducto=$('#colorProducto').val();
+colorProducto=$('#colorProductoA').val();
 barcode=$('#barcode').val();
 familia=$('#familiaA').val();
 $('#loading').css('display','block');
@@ -122,7 +193,8 @@ $('#loading').css('display','none');
             alert(json.error);
         }else{
         	  alertify.success('MODIFICADO CORRECTAMENTE');
-        	location.reload();
+            listar();
+        	
         }
 
         }
@@ -140,9 +212,17 @@ function Validar(){
 function cargarIdEliminar(boton){
 id=$(boton).attr('id');
 nombre=$(boton).attr('nombre');
-
 $('#nombreProductoModal').text('"'+nombre+'"');
 $('#idProductoEliminar').val(id);
 
 
+}
+
+
+function paginador() {
+    $('#ghatable').DataTable({
+        "pagingType": "full_numbers",
+        retrieve: true,
+        
+    });
 }

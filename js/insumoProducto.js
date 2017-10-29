@@ -59,3 +59,65 @@ id=$(boton).attr('idrelproinsE');
 $('#idInsumoEliminar').val(id);
 $('#nombreInsumoE').text('"'+nombre+'"');
 }
+
+function modificarCantidadInsumo(){
+	$('#loading').css('display','block');
+
+	idInsumo=$('#idInsumoProducto').val();
+	CantidadRelInsPro=$('#CantidadRelInsPro').val();
+	$.post('CONTROLADORES/insumoProductoController.php',{proceso:"modificarCantidadInsumo",cantidad:CantidadRelInsPro,id:idInsumo},function(res){
+  var json = $.parseJSON(res);
+ 	  alertify.success('MODIFICADO CORRECTAMENTE');
+ 	   listar();
+	$('#loading').css('display','none');
+
+	});
+}
+function eliminarInsumoProducto(){
+	idInsumo=$('#idInsumoEliminar').val();
+	$('#loading').css('display','block');
+
+$.post('CONTROLADORES/insumoProductoController.php',{proceso:"EliminarInsumoProducto",id:idInsumo},function(res){
+  var json = $.parseJSON(res);
+ 	  alertify.success('ELIMINADO CORRECTAMENTE');
+ 	   listar();
+	$('#loading').css('display','none');
+		$('#ModalEliminarInsumoProducto').modal('hide');
+
+	});
+}
+
+
+function listarInsumoProducto(id,boton){
+  $('input[name=productoInsumo]').val(id);
+  nombre=$(boton).attr('nombreproducto');
+
+  $('#tituloInsumoProducto').text('"'+nombre+'"');
+	tbodyInsumoProducto=$('#tbodyInsumoProducto');
+	tbodyInsumoProducto.empty();
+	$('#loading').css('display','block');
+
+	$.post('CONTROLADORES/insumoProductoController.php',{proceso:"listarInsumoProducto",id:id},function(res){
+  var json = $.parseJSON(res);
+ 	  
+	$('#loading').css('display','none');
+	for (var i = 0; i < json.result.length; i++) {
+		tbodyInsumoProducto.append('<tr><td>'+json.result[i].COD_INS+
+			'<td>'+json.result[i].NOM_INSUMO+
+			'<td>'+json.result[i].MEDIDA+
+			'<td>'+json.result[i].STOCK_MIN+
+			'<td>'+json.result[i].STOCK_ACT+
+			'<td><input type="checkbox" name="insumo[]" onclick="habilitarInput('+i+')" value="'+json.result[i].COD_INS+'">'+
+			'<td><input type="number" name="cantidad[]" id="cantidadInsumo'+i+'" habilitado="true" disabled="true" class="form-control input-sm">');
+	}
+paginadorInsumoProducto();
+	});
+}
+
+function paginadorInsumoProducto() {
+    $('#ghatableInsumoProducto').DataTable({
+        "pagingType": "full_numbers",
+        retrieve: true,
+        
+    });
+}

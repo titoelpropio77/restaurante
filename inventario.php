@@ -1,7 +1,5 @@
 <?php
-require("class/Conexion.php");
 
-require("class/menugrupo.php");
 
 include "header.php";
 ?>
@@ -15,7 +13,6 @@ include "header.php";
 
 
   <?php 
-include "alerts/cargando.php";
 include "modal/modalMenuGrupo.php";
    ?>
      <!--<a href="create.php" class="btn btn-success btn-md"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar Producto</a><br/>-->
@@ -44,8 +41,8 @@ include "modal/modalMenuGrupo.php";
     </div>
 </div>
     </div>
-    <script src="js/menuGrupo.js"></script>
  
 <?php
 include "footer.php";
 ?>
+    <script src="js/menuGrupo.js"></script>

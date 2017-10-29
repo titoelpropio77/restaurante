@@ -23,20 +23,12 @@
 
                         <div class="col-sm-9">
                             <select class="form-control" id="estadoA" name="estado">
-                                <option value="0">-- seleccionar estado --</option>
+                                <option value="ACTIVO">-- seleccionar estado --</option>
                                 <option value="ACTIVO">ACTIVO</option>
                                 <option value="INACTIVO">INACTIVO</option>
                             </select>
                         </div>
-                    </div> <!-- form-goup -->
-                    <!--  <div class="input-group col-xs-6">
-                         <span class="input-group-addon">Estado</span>            
-                         <select class="form-control" id="estado" name="estado">
-                             <option value="0">-- seleccionar estado --</option>
-                             <option value="ACTIVO">ACTIVO</option>
-                             <option value="INACTIVO">INCTIVO</option>
-                         </select>
-                     </div> -->
+                    </div>
                     <div class="form-group col-xs-6">
                         <label for="inputEmail3" class="col-sm-3 control-label">Cantidad:</label>
                         <div class="col-sm-9">
@@ -57,19 +49,11 @@
                     </div>
 
                     <div class="form-group col-xs-12">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Grupo:</label>
+                        <label for="inputEmail3" class="col-sm-2 control-label">Categoria:</label>
                         <div class="col-sm-9">           
                             <select class="form-control" name="grupo" id="grupoA">
-                                <option value="0">seleccione categoria</option>
-                                <?php
-                                $objPaises = new Paises();
-                                $paises = $objPaises->paises();
-                                foreach ($paises as $pais) {
-                                    ?>
-                                    <option value="<?php echo $pais["GRUPO"]; ?>"><?php echo $pais["NOM_GRUPO"]; ?></option>
-                                    <?php
-                                }
-                                ?>
+                                <option value="0">SELECCIONE CATEGORIA</option>
+                               
                             </select>
 
                         </div>
@@ -100,7 +84,7 @@
                         <label for="inputEmail3" class="col-sm-3 control-label">Color:</label>
                         <div class="col-sm-9">  
                        <!--   <input type='color' id='colores' name='colores' type='color' value='<?php // if(isset($_POST['submit'])){echo $colores;}  ?>' /> -->
-                            <input class="form-control" type="color" value="#563d7c"  id="colorProducto">
+                            <input class="form-control" type="color"  name="colorProductoA" id="colorProductoA">
                         </div>                    
                     </div>                    
                     <div class="form-group col-xs-9">
@@ -144,7 +128,6 @@
             </div>
             <div class="modal-body">
                 <div class="col-sm-12">
-                 <form action="" id="" enctype="" method="POST"> 
                         <div class="form-group col-xs-9">
                             <label for="inputEmail3" class="col-sm-3 control-label">Nombre: </label>
                             <div class="col-sm-9">
@@ -183,16 +166,8 @@
                             <label for="inputEmail3" class="col-sm-2 control-label">Grupo:</label>
                             <div class="col-sm-9">                                   
                                 <select class="form-control" name="grupo" id="selectGrupo">
-                                    <option value="0">seleccione categoria</option>
-                                    <?php
-                                    $objPaises = new Paises();
-                                    $paises = $objPaises->paises();
-                                    foreach ($paises as $pais) {
-                                        ?>
-                                        <option value="<?php echo $pais["GRUPO"]; ?>"><?php echo $pais["NOM_GRUPO"]; ?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                    <option value="0">SELECCIONE CATEGORIA</option>
+                                  
                                 </select>
 
                             </div>
@@ -223,15 +198,15 @@
                         <div class="form-group col-xs-9">
                             <label for="inputEmail3" class="col-sm-3 control-label">Color:</label>
                             <div class="col-sm-9">  
-                                <input type='color' id='colores' name='colores' type='color' />
+                                <input type='color' id='colores' value="#ff4a4f" name='colores' type='color' class="form-control" />
                             </div>                    
                         </div>                    
                         <div class="form-group col-xs-9">
                             <label for="inputEmail3" class="col-sm-3 control-label">Codigo de Barra:</label>
                             <div class="col-sm-9"> 
-                                <input type="text" class="form-control" name="barcode" id="barcode" placeholder="codigo de barra">
+                                <input type="text" class="form-control" name="barcode" id="barcodeI" placeholder="codigo de barra">
                             </div>                    
-                        </div>          s          
+                        </div>                 
                         <div class="form-group col-xs-9">
                             <label for="inputEmail3" class="col-sm-3 control-label">Tipo de Producto:</label>
                             <div class="col-sm-9">            
@@ -246,9 +221,8 @@
                         </div>                                    
                 </div>                                    
                 <div class="modal-footer">
-                    <button type="submit" name="bts" class="btn btn-success">Guardar</button>
+                    <button name="bts" class="btn btn-success" onclick="guardarProducto()">Guardar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>     
-                </form>
 
                 </div>
             </div>
@@ -270,7 +244,7 @@
                     <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">Agregar Categorias</button> -->
                     <div class="col-sm-6">   
 
-                        <table id="ghatable" class="ghatable display table table-bordered table-stripe table-hover table-responsive" cellspacing="0" width="100%"> <!--jquery.dataTables.min.js -->
+                        <table id="ghatableGrupo" class="ghatableGrupo display table table-bordered table-stripe table-hover table-responsive" cellspacing="0" width="100%"> <!--jquery.dataTables.min.js -->
                             <thead style="text-align: center">
 
                             <th>ID</th>
@@ -281,20 +255,7 @@
 
                             </thead>
                             <tbody id="tbodyGrupo">
-                                <?php
-                                $con = new Conexion();
-                                $conexcion = $con->ConexionDB();
-                                $menugrupo = new menugrupo($con);
-                                $listagrupo = $menugrupo->todo();
-                                for ($i = 0; $i < count($listagrupo); $i++) {
-
-                                    echo '<tr  style="  text-align: center;"><td>' . $listagrupo[$i]->id . '<td>' . $listagrupo[$i]->cod_grupo . '<td>' . $listagrupo[$i]->nom_grupo . '<td>' . $listagrupo[$i]->estado . '<td><button  class="btn btn-info" title="EDITAR PRODUCTO" data-toggle="modal" data-target="#ModalModificarGrupo"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></tr>';
-                                }
-                                // if ($listaregional !== null) {
-                                //     for ($index = 0; $index < count($listaregional); $index++) {
-                                //     }
-                                // }
-                                ?>
+                             
                             </tbody>
                         </table>   
                     </div>                   
@@ -339,7 +300,6 @@
       <button type="submit" name="bts" class="btn btn-success" onclick="guardarGrupo()">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                                    
             </div>
-            </form>
         </div>
     </div>      
 </div>
@@ -354,14 +314,12 @@
 
             </div>
             <div class="modal-body">
-               <form action="" id="" enctype="" method="POST"> 
                   <input type="hidden" id="idProductoEliminar" name="idProductoEliminar">
             </div>
             <div class="modal-footer">
                 <button type="submit" name="btnEliminarPro" class="btn btn-success">Guardar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">VOLVER</button>                        
             </div>
-            </form>
         </div>
     </div>      
 </div>

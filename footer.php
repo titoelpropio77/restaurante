@@ -9,15 +9,8 @@
     <script src="js/plugins/jquery.dataTables.min.js"></script>
     <script src="js/bootstrap/dataTables.bootstrap.js"></script>
     <script src="js/plugins/alertify.js"></script>
-    <script src="js/plugins/adminlte.js"></script>
     <script src="js/plugins/HERRAMIENTAS.js"></script>
-    
-    <script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-     $('.ghatable').dataTable(); 
-       $('#loading').css('display','none');  
-     
-	});
-    </script>
+
+
   </body>
 </html> 

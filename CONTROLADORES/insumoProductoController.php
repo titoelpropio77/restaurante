@@ -1,25 +1,82 @@
 <?php 
 
 
+include_once "../class/Conexion.php";
+include_once "../class/RELPROINS_MYSQL.class.php";
+include_once "../class/INSUMOS_MYSQL.class.php";
 
 $con= new Conexion();
 $conexion= $con->ConexionDB();
 
 $resultado = "";
+$error = "";
+$proceso=$_POST['proceso'];
 if (!$con->estado) {
     $error = "No se pudo establecer conexion. Intente nuevamente.";
     $reponse = array("error" => $error, "result" => $resultado);
     echo  json_encode($reponse);
     return;
 }
+switch ($proceso) {
+	case 'modificarCantidadInsumo':
+		$insProd=new RELPROINS_MYSQL($con);
+			$ID=$_POST['id'];
+			$CANTIDAD=$_POST['cantidad'];
+			$con->transacion();
+			$modificar =$insProd->modificar($ID,$CANTIDAD);
+			if (!$modificar) {
+		$error='ERROR AL MODIFICAR DATOS';
+	
+		$con->rollback();
+		}else{
+			$resultado= "MODIFICADO CORRECTAMENTE";
+			$con->commit();
+	
+		}
+
+		
+		break;
+	case 'EliminarInsumoProducto':
+		$insProd=new RELPROINS_MYSQL($con);
+		$ID=$_POST['id'];
+		$eliminar=$insProd->eliminar($ID);
+
+		if (!$eliminar) {
+			$con->rollback();
+			$error='ERROR AL ELIMINAR DATOS';
+		}else{
+			$con->commit();
+			$resultado= "ELIMINAR CORRECTAMENTE";
+		}
+				break;
+     case 'listarInsumoProducto':
+		$ID=$_POST['id'];
+
+     		$insProd=new INSUMOS_MYSQL($con);
+     		$resultado= $insProd->listar($ID);
+     		if ($resultado) {
+     			
+     		}else{
+     			$error="ERROR";
+     		}
+     	break;
+     case 'guardarInsumoProducto':
+     	guardarInsumoProducto();
+     	break;
+
+	default:
+		# code...
+		break;
+}
 //if (isset($_POST['btnGuardarInsumoProducto'])) {
 function guardarInsumoProducto(){
+
 $error = "";
 $con= new Conexion();
 $conexion= $con->ConexionDB();
 $insProd=new RELPROINS_MYSQL($con);
 $COD_INS=$_POST['insumo'];
-$COD_PROD=$_POST['producto'];
+$COD_PROD=$_POST['productoInsumo'];
 $CANTIDAD=$_POST['cantidad'];
 for ($i=0; $i <count($COD_INS) ; $i++) { 
 	$insProd->contructor(0,$COD_PROD,$COD_INS[$i],$CANTIDAD[$i],'');
@@ -30,52 +87,20 @@ if ($insertar===0) {
 
 
 }
+header('Location: ../productos.php');
 if($error!=''){
-	return false;
+	$error="error";
 }else{
-	return true;
-
+	$resultado="GUARDADO CORRECTAMENTE";
 }
 
 }
 
-function modificarInsumoProducto(){
-$error = "";
-$con= new Conexion();
-$conexion= $con->ConexionDB();
-$insProd=new RELPROINS_MYSQL($con);
-$ID=$_POST['idInsumoProducto'];
-$CANTIDAD=$_POST['CantidadRelInsPro'];
-$con->transacion();
-$modificar =$insProd->modificar($ID,$CANTIDAD);
-if (!$modificar) {
-	$con->rollback();
-	return false;
-}else{
-	$con->commit();
-	return true;
-}
 
 
-}
 
-function EliminarInsumoProducto(){
-	$error = "";
-$con= new Conexion();
-$conexion= $con->ConexionDB();
-$insProd=new RELPROINS_MYSQL($con);
-$ID=$_POST['idInsumoEliminar'];
-$eliminar=$insProd->eliminar($ID);
-
-if (!$eliminar) {
-	$con->rollback();
-	return false;
-}else{
-	$con->commit();
-	return true;
-}
-}
-
+$reponse = array("error" => $error, "result" => $resultado);
+echo  json_encode($reponse);
  /// esta funcion lista en el modal insumo producto
 //if(isset($_POST['btnInsumoProducto'])){
 

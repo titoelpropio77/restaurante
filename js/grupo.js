@@ -1,17 +1,26 @@
-function habilitarInputG(index){
-	cantidad=$('#factor'+index).attr('habilitado');
-	if (cantidad==='true') {
-				$('#factor'+index).attr('disabled',false);
-	$('#factor'+index).attr('habilitado',false);
+function GuardarProductoAGrupo(nombre){
+	nombreGrupo=nombre;
+	$.post('CONTROLADORES/grupoController.php',{proceso:"guardar",nombreGrupo:nombreGrupo},function(res){
+	  var json = $.parseJSON(res);
+		if (json.error!="") {
+			alert("ERROR POR FAVOR INTENTE NUEVAMENTE");
+			return;
+		}
+		$('#ModalaAgregarGrupo').modal('hide');
 
+		listarProductoGrupo(botonProducto);
 
+	});
+}
 
-	}else{
-	$('#factor'+index).attr('disabled',true);
-	$('#factor'+index).val("");
-	$('#factor'+index).attr('habilitado',true);
-	
-
-
-	}
+function prueba2(){
+	alertify.prompt("GUARDAR GRUPO","NOMBRE GRUPO", "",
+  function(evt, value ){
+   GuardarProductoAGrupo(value);
+    alertify.success('GUARDADO CORRECTAMENTE');
+  },
+  function(){
+    alertify.error('Cancel');
+  })
+  ;
 }
