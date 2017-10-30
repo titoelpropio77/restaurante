@@ -32,3 +32,68 @@
         min-width: 64px;
   }
 }
+
+.botonCategoriaMobil{
+     border: none;
+    width: 93px;
+    height: 51px;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    background: #9FF;
+    box-shadow: 0 3px #999;
+    margin-right: 4px;
+    margin-bottom: 3px;
+    padding: 0;
+    margin-left: 1px;
+    margin-top: 1px;
+    white-space: inherit;
+}
+.botonCategoria{
+    border: none;
+    width: 99px;
+    height: 56px;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    background: #9FF;
+    box-shadow: 0 3px #999;
+    margin-right: 4px;
+    margin-bottom: 3px;
+    padding: 0;
+    margin-left: 1px;
+    margin-top: 1px;
+    white-space: inherit;
+}
+
+.divCategoriaMobil{
+max-height: 100px;
+    overflow: auto;
+    background: #CCFFFF;
+}
+.divCategoria{
+    max-height: 127px;
+    overflow: auto;
+    background: #CCFFFF;
+}
+.divProductoMobil{
+  max-height: 150px;
+    overflow: auto;
+    background: #ECF5FF;
+    margin-top: -59px;
+    min-height: 153px;
+}
+.divProducto{
+        max-height: 150px;
+    overflow: auto;
+    background: #ECF5FF;
+    margin-top: -34px;
+    min-height: 223px;
+}
+
+.colorhover:hover{
+  background: #5ed450;
+}
+.colorhover{
+  background: #8aff7c;
+}

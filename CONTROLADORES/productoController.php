@@ -100,20 +100,21 @@ if ($proceso==="listar") {
 
 	$resultado= $producto->todo();
 	for ($i=0; $i <count($resultado) ; $i++) { 
-		$tabla.="<tr style='text-align: center;'><td>".$resultado[$i]->id.
-		"<td>".$resultado[$i]->nom_prod.
-		"<td>".$resultado[$i]->cantidad.
-		"<td>".$resultado[$i]->unid.
-		"<td>".$resultado[$i]->pre_venta.
+		$tabla.="<tr style=''><td>".$resultado[$i]->id.
+		"<td style='white-space: pre;     padding-right: 0;'>".$resultado[$i]->nom_prod.
+		"<td style='  text-align: right;'>".$resultado[$i]->cantidad.
+		"<td style='  text-align: right;'>".$resultado[$i]->unid.    
+		"<td style='  text-align: right;'>".$resultado[$i]->pre_venta.
 		"<td>".$resultado[$i]->nom_grupo.
 		"<td>".$resultado[$i]->estado.
-		"<td><button style='background:  ".$resultado[$i]->colores."; border-color:".$resultado[$i]->colores." ;    width: 100%;  height: 26px;'></button>
-        <td><button onclick='cargarDatosProducto(".$resultado[$i]->id.")' class='btn btn-info' title='EDITAR PRODUCTO' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>
+		"<td ><button style='background:  ".$resultado[$i]->colores."; border-color:".$resultado[$i]->colores." ;    width: 59%;   ;
+    height: 35px;'></button>
+        <td style='    padding-left: 2px;'><button onclick='cargarDatosProducto(".$resultado[$i]->id.")' class='btn btn-info' title='EDITAR PRODUCTO' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>
         <button id='".$resultado[$i]->id."' onclick='cargarIdEliminar(this)' nombre='".$resultado[$i]->nom_prod."'  class='btn btn-danger' title='ELIMINAR PRODUCTO' data-toggle='modal' data-target='#ModalEliminarProducto'><i class='fa fa-trash-o' aria-hidden='true'></i></button>";
 		 $proins=new RELPROINS_MYSQL($con);
 		 $resultado2=$proins->buscarXID($resultado[$i]->id);
 		if ($resultado2) {
-			$tabla.='<td><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo'.$i.'"><i class="fa fa-plus"></i></button>
+			$tabla.='<td style="    text-align: center;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo'.$i.'"><i class="fa fa-plus"></i></button>
   <div id="demo'.$i.'" class="collapse">
   <button  class="btn btn-success btn-xs" nombreProducto="'.$resultado[$i]->nom_prod.'" data-toggle="modal" data-target="#ModalaAgregarInsumo" onclick="listarInsumoProducto('.$resultado[$i]->id.',this)" >AGREGAR INSUMO</button>
   <table class="table-striped table-bordered  ">
@@ -128,13 +129,13 @@ $tabla.="</tbody>
              </table>";
 		}
 		else{
-			$tabla.='<td><button class="btn btn-success" nombreProducto="'.$resultado[$i]->nom_prod.'"  data-toggle="modal" data-target="#ModalaAgregarInsumo" onclick="listarInsumoProducto('.$resultado[$i]->id.',this)" >AGREGAR INSUMO</button>';		}
+			$tabla.='<td style="text-align: center;"><button class="btn btn-success btn-sm" nombreProducto="'.$resultado[$i]->nom_prod.'"  data-toggle="modal" data-target="#ModalaAgregarInsumo" onclick="listarInsumoProducto('.$resultado[$i]->id.',this)" >Agregar Insumo</button>';		}
 			$progru=new RELPROGRU_MYSQL($con);
  $resultado2=$progru->buscarXID($resultado[$i]->id);
 		if ($resultado2) {
-			$tabla.='<td><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demoa'.$i.'"><i class="fa fa-plus"></i></button>
+			$tabla.='<td style="text-align: center;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demoa'.$i.'"><i class="fa fa-plus"></i></button>
   <div id="demoa'.$i.'" class="collapse">
-  <button data-toggle="modal" data-target="#ModalaAgregarGrupoProducto" class="btn btn-success btn-xs" onclick="listarProductoGrupo(this)" id="'.$resultado[$i]->id.'" nombre="'.$resultado[$i]->nom_prod.'"  cantidad="'.$resultado[$i]->cantidad.'" unidad="'.$resultado[$i]->unid.'"  >AGREGAR A GRUPO</button>
+  <button data-toggle="modal" data-target="#ModalaAgregarGrupoProducto" class="btn btn-success btn-xs" onclick="listarProductoGrupo(this)" id="'.$resultado[$i]->id.'" nombre="'.$resultado[$i]->nom_prod.'"  cantidad="'.$resultado[$i]->cantidad.'" unidad="'.$resultado[$i]->unid.'"  >Agregar a Grupo</button>
   <table class="table-striped table-bordered  ">
                 <thead><tr><th><center>GRUPO</center></th><th><center>FACTOR</center></th><th><center>OPERACION</center></th>
                  </tr></thead><tbody>';
@@ -147,7 +148,7 @@ $tabla.="</tbody>
              </table>";
 		}
 		else{
-			$tabla.='<td><button class="btn btn-success" data-toggle="modal" data-target="#ModalaAgregarGrupoProducto" onclick="listarProductoGrupo(this)" id="'.$resultado[$i]->id.'" nombre="'.$resultado[$i]->nom_prod.'" cantidad="'.$resultado[$i]->cantidad.'" unidad="'.$resultado[$i]->unid.'" name="btnInsumoProducto">AGREGAR A GRUPO</button>';		}
+			$tabla.='<td style="text-align: center;"><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ModalaAgregarGrupoProducto" onclick="listarProductoGrupo(this)" id="'.$resultado[$i]->id.'" nombre="'.$resultado[$i]->nom_prod.'" cantidad="'.$resultado[$i]->cantidad.'" unidad="'.$resultado[$i]->unid.'" name="btnInsumoProducto">Agregar a Grupo</button>';		}
 	
 
 	}

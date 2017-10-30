@@ -79,7 +79,7 @@ $consulta="insert into posgourmet.menugrupo_mysql(ID, NOM_GRUPO,  ESTADO, COLORE
     }
     	 
 		function todo(){
-		$consulta="select * from menugrupo_mysql  ORDER BY menugrupo_mysql.NOM_GRUPO";
+		$consulta="select * from menugrupo_mysql  ORDER BY menugrupo_mysql.ID desc";
 		$result=$this->CON->consulta($consulta);
      
 		return $this->rellenar($result);

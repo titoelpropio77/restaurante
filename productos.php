@@ -44,15 +44,15 @@ include "alerts/cargando.php";
 <table id="ghatable" class="table table-bordered table-hover dataTable" > <!--jquery.dataTables.min.js -->
      <thead style="text-align: center">
           <tr>
-               <th>CODIGO</th>
-               <th>NOMBRE</th>
-               <th>Cantidad</th>
+               <th>COD</th>
+               <th style="padding-right: 0;">NOMBRE</th>
+               <th>Cant</th>
                <th>Unidad</th>
                <th>Precio</th>
                <th>Categoria</th>
                <th>Estado</th>
-               <th>Colores</th>
-               <th>Operacion</th>
+               <th>Color</th>
+               <th>Acción</th>
                <th>Agregar Receta</th>
                <th>Grupo</th>
                <!-- <th>Color</th> -->

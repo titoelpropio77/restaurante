@@ -20,7 +20,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> -->
 
 </head>
-<body style="background-image: url(imagenes/bg2.jpg); box-shadow: 0 0 35px 8px black;">
+<body style=" box-shadow: 0 0 35px 8px black;">
 	
 	<div class="container">
     <nav class="navbar navbar-inverse" >
