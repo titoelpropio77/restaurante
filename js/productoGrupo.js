@@ -12,7 +12,7 @@ function listarProductoGrupo(boton) {
     id = $(boton).attr('id');
     nombre = $(boton).attr('nombre');
     $('#tituloProductoGrupo').text('"' + nombre + '"');
-   ;
+   
 
 // $('#ghatableProductoGrupo').append("<tbody id='tbodyProductoGrupo'></tbody>");
 //   $('#ghatableProductoGrupo').DataTable().clear();

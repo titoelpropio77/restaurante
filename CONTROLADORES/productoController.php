@@ -42,7 +42,7 @@ if ($proceso==="guardar") {
   $barcode=$_POST["barcode"];
 	$producto=new producto($con);
 
-	$producto->contructor(0, 0,$nombreProd,$cantidad,$pre_venta,$estado,$sujiere,$unidad,"",$colores,"","","",$selectGrupo,$disponible,$barcode,$sujiere);
+	$producto->contructor(0, 0,$nombreProd,$cantidad,$pre_venta,$estado,$sujiere,$unidad,"0",$colores,"","","",$selectGrupo,$disponible,$barcode,$sujiere);
 	$insertar= $producto->insertar();
 
 	$modificar=$producto->modificarCodigo($insertar);

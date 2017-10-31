@@ -10,7 +10,8 @@ function guardarGrupo(){
 	estado=$('#estadoGrupo').val();
 	color=$('#colorGrupo').val();
 	orden=$('#orden').val();
-	selectGrupo=$('#selectGrupo');
+    		selectGrupo=$('#selectGrupo');
+	
 	selectGrupo.empty();
 
 	$('#loading').css('display','block');

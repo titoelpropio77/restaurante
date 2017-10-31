@@ -3,9 +3,8 @@
 
 function loguear(){
 
-include_once ("abms1/class/Conexion.php");
 include_once ( "abms1/class/USUARIOS_MYSQL.class.php");
-include_once ( "abms1/class/INGUSER_MYSQL.class.php");
+
 $fechaActual=date("Y")."-".date('m')."-".date("d");
 $proceso=$_POST['proceso'];
 $con= new Conexion();
@@ -53,6 +52,7 @@ if (count($verificar)>0) {
 return true;
 		
 }
+return false;
 }
 function logout(){
 

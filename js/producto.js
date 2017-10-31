@@ -9,9 +9,11 @@ $(document).ready(function(){
 
 
 var listar =function (){
+  
  $('#ghatable').DataTable().destroy();
   
  datos=$('#datos');
+
  datos.empty();
  fila="";
  $.ajax({
