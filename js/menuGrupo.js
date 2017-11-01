@@ -84,7 +84,7 @@ $('#loading').css('display','none');
 function cargarGrupo(){
 	var grupo=$('select[name=grupo]');
 	var tbodyGrupo=$('#tbodyGrupo');
-	$('#ghatableGrupo').DataTable().destroy()
+	$('#ghatableGrupo').DataTable().destroy();
 $.post('CONTROLADORES/menuGrupoController.php', {proceso: 'mostrarTodo'}, function (response) {
  
  	  var json = $.parseJSON(response);

@@ -33,7 +33,7 @@
         <span class="icon-bar"></span> 
               </button>
 
-      <a class="navbar-brand" href="#">GOURMET</a>
+      <a class="navbar-brand" href="../">GOURMET</a>
       <!-- <a class="navbar-brand" href="#">Brand</a> -->
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->

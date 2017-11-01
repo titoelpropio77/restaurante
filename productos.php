@@ -41,7 +41,7 @@ include "alerts/cargando.php";
 <div class="row">
 
  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="    overflow-x: scroll;">
-<table id="ghatable" class="table table-bordered table-hover dataTable" > <!--jquery.dataTables.min.js -->
+<table id="ghatable" class="table table-bordered table-hover table-responsive table-condensed dataTable" > <!--jquery.dataTables.min.js -->
      <thead style="text-align: center">
           <tr>
                <th>COD</th>

@@ -62,6 +62,11 @@ switch ($proceso) {
 	
 	
 		break;
+		case 'listarHistorico':
+				$venta=new VEN_GRAL_MYSQL($con);
+				$resultado=$venta->todo();
+				
+			break;
 	
 	default:
 		# code...
